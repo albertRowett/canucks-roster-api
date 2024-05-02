@@ -10,6 +10,12 @@ class Nationality extends Model
 {
     use HasFactory;
 
+    protected $hidden = [
+        'id',
+        'created_at',
+        'updated_at'
+    ];
+
     public function players(): HasMany
     {
         return $this->hasMany(Player::class);

@@ -11,6 +11,13 @@ class Player extends Model
 {
     use HasFactory;
 
+    protected $hidden = [
+        'position_id',
+        'nationality_id',
+        'created_at',
+        'updated_at'
+    ];
+
     public function position(): BelongsTo
     {
         return $this->belongsTo(Position::class);
