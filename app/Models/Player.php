@@ -14,6 +14,7 @@ class Player extends Model
     protected $hidden = [
         'position_id',
         'nationality_id',
+        'draft_team_id',
         'created_at',
         'updated_at'
     ];
@@ -28,8 +29,13 @@ class Player extends Model
         return $this->belongsTo(Nationality::class);
     }
 
-    public function teams(): BelongsToMany
+    public function draft_team(): BelongsTo
     {
-        return $this->belongsToMany(Team::class);
+        return $this->belongsTo(DraftTeam::class);
+    }
+
+    public function previous_teams(): BelongsToMany
+    {
+        return $this->belongsToMany(PreviousTeam::class);
     }
 }

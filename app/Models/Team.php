@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Team extends Model
 {
@@ -13,12 +13,16 @@ class Team extends Model
     protected $hidden = [
         'id',
         'created_at',
-        'updated_at',
-        'pivot'
+        'updated_at'
     ];
 
-    public function players(): BelongsToMany
+    public function draft_team(): HasOne
     {
-        return $this->belongsToMany(Player::class);
+        return $this->hasOne(DraftTeam::class);
+    }
+
+    public function previous_team(): HasOne
+    {
+        return $this->hasOne(PreviousTeam::class);
     }
 }
