@@ -17,7 +17,7 @@ class PositionFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->fake()->randomElement(['Goaltender', 'Defense', 'Center', 'Left wing', 'Right wing'])
         ];
     }
 }
