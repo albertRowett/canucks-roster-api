@@ -16,7 +16,7 @@ class Player extends Model
         'nationality_id',
         'draft_team_id',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     public function position(): BelongsTo

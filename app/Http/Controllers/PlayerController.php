@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Player;
-use Illuminate\Http\Request;
 
 class PlayerController extends Controller
 {
@@ -13,13 +12,13 @@ class PlayerController extends Controller
 
         if ($players->isEmpty()) {
             return response()->json([
-                'message' => 'No players found'
+                'message' => 'No players found',
             ], 404);
         }
 
         return response()->json([
             'data' => $players,
-            'message' => 'Players successfully retrieved'
+            'message' => 'Players successfully retrieved',
         ]);
     }
 }

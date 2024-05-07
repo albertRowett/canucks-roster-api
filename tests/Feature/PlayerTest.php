@@ -5,8 +5,6 @@ namespace Tests\Feature;
 use App\Models\Player;
 use App\Models\PreviousTeam;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
@@ -30,7 +28,7 @@ class PlayerTest extends TestCase
                         'position.name' => 'string',
                         'nationality.name' => 'string',
                         'draft_team.team.name' => 'string',
-                        'previous_teams.0.team.name' => 'string'
+                        'previous_teams.0.team.name' => 'string',
                     ]);
                 })
                     ->where('message', 'Players successfully retrieved');

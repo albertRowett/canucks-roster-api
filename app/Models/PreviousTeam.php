@@ -16,7 +16,7 @@ class PreviousTeam extends Model
         'team_id',
         'created_at',
         'updated_at',
-        'pivot'
+        'pivot',
     ];
 
     public function team(): BelongsTo

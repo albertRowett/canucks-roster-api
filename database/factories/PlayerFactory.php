@@ -25,7 +25,7 @@ class PlayerFactory extends Factory
             'position_id' => Position::factory(),
             'date_of_birth' => fake()->date(),
             'nationality_id' => Nationality::factory(),
-            'draft_team_id' => DraftTeam::factory()
+            'draft_team_id' => DraftTeam::factory(),
         ];
     }
 }
