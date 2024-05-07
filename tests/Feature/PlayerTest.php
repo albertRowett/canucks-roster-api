@@ -36,4 +36,13 @@ class PlayerTest extends TestCase
                     ->where('message', 'Players successfully retrieved');
             });
     }
+
+    public function test_no_players_found(): void
+    {
+        $response = $this->getJson('/api/players');
+        $response->assertStatus(404)
+            ->assertJson(function (AssertableJson $json) {
+                $json->where('message', 'No players found');
+            });
+    }
 }
