@@ -20,10 +20,10 @@ class PlayerFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->fake()->name(),
-            'jersey_number' => $this->fake()->unique()->numberBetween(1, 99),
+            'name' => fake()->name(),
+            'jersey_number' => fake()->unique()->numberBetween(1, 99),
             'position_id' => Position::factory(),
-            'date_of_birth' => $this->fake()->date(),
+            'date_of_birth' => fake()->date(),
             'nationality_id' => Nationality::factory(),
             'draft_team_id' => DraftTeam::factory()
         ];
