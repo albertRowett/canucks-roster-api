@@ -16,12 +16,12 @@ class Team extends Model
         'updated_at'
     ];
 
-    public function draft_team(): HasOne
+    public function draftTeam(): HasOne
     {
         return $this->hasOne(DraftTeam::class);
     }
 
-    public function previous_team(): HasOne
+    public function previousTeam(): HasOne
     {
         return $this->hasOne(PreviousTeam::class);
     }

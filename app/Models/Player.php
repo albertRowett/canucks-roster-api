@@ -29,12 +29,12 @@ class Player extends Model
         return $this->belongsTo(Nationality::class);
     }
 
-    public function draft_team(): BelongsTo
+    public function draftTeam(): BelongsTo
     {
         return $this->belongsTo(DraftTeam::class);
     }
 
-    public function previous_teams(): BelongsToMany
+    public function previousTeams(): BelongsToMany
     {
         return $this->belongsToMany(PreviousTeam::class);
     }
