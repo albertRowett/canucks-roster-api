@@ -16,10 +16,9 @@ class PlayerTest extends TestCase
 
     public function test_get_players_success(): void
     {
-        Player::factory()->count(0)->has(PreviousTeam::factory()->count(1))->create();
+        Player::factory()->count(2)->has(PreviousTeam::factory()->count(1))->create();
 
         $response = $this->getJson('/api/players');
-        $response->dd();
         $response->assertStatus(200)
             ->assertJson(function (AssertableJson $json) {
                 $json->has('data', 2, function (AssertableJson $json) {
