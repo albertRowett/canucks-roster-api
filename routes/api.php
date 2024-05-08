@@ -8,4 +8,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/players', [PlayerController::class, 'getPlayers']);
+Route::controller(PlayerController::class)->group(function () {
+    Route::get('/players', 'getPlayers');
+    Route::get('/players/{jerseyNumber}', 'getPlayerByJerseyNumber');
+});
