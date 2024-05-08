@@ -7,9 +7,9 @@ use Illuminate\Http\JsonResponse;
 
 class PlayerController extends Controller
 {
-    public function getPlayers()
+    public function getPlayers(): JsonResponse
     {
-        $players = Player::with(['position', 'nationality', 'draftTeam.team', 'previousTeams.team'])->get();
+        $players = Player::with(['position:id,name', 'nationality:id,name'])->get();
 
         return response()->json([
             'data' => $players,
