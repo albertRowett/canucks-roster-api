@@ -16,6 +16,8 @@ class Team extends Model
         'updated_at',
     ];
 
+    protected $fillable = ['name'];
+
     public function draftTeam(): HasOne
     {
         return $this->hasOne(DraftTeam::class);

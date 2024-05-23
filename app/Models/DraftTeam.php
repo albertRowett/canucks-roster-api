@@ -18,6 +18,8 @@ class DraftTeam extends Model
         'updated_at',
     ];
 
+    protected $fillable = ['team_id'];
+
     public function players(): HasMany
     {
         return $this->hasMany(Player::class);
