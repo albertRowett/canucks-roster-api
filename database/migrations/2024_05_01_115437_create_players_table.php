@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('position_id');
             $table->date('date_of_birth');
             $table->foreignId('nationality_id');
-            $table->foreignId('draft_team_id');
+            $table->foreignId('draft_team_id')->nullable();
             $table->timestamps();
         });
     }
