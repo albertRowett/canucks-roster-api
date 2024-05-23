@@ -16,6 +16,8 @@ class Position extends Model
         'updated_at',
     ];
 
+    protected $fillable = ['name'];
+
     public function players(): HasMany
     {
         return $this->hasMany(Player::class);
