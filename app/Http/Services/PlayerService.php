@@ -5,6 +5,7 @@ namespace App\Http\Services;
 use App\Models\DraftTeam;
 use App\Models\Nationality;
 use App\Models\Position;
+use App\Models\PreviousTeam;
 use App\Models\Team;
 
 class PlayerService
@@ -52,6 +53,35 @@ class PlayerService
         }
 
         return null;
+    }
+
+    public function getPreviousTeamIdsByPreviousTeamNames(array $names): ?array
+    {
+        $teamIds = array_map(function($name) {
+            return $this->getTeamIdByTeamName($name);
+        }, $names);
+
+        if (in_array(null, $teamIds, true)) {
+            return null;
+        }
+
+        $previousTeamIds = array_map(function($teamId) {
+            $previousTeam = PreviousTeam::firstOrCreate([
+                'team_id' => $teamId,
+            ]);
+
+            if ($previousTeam) {
+                return $previousTeam->id;
+            }
+
+            return null;
+        }, $teamIds);
+
+        if (in_array(null, $previousTeamIds, true)) {
+            return null;
+        }
+
+        return $previousTeamIds;
     }
 
     private function getTeamIdByTeamName(string $name): ?int

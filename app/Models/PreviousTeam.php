@@ -19,6 +19,8 @@ class PreviousTeam extends Model
         'pivot',
     ];
 
+    protected $fillable = ['team_id'];
+
     public function team(): BelongsTo
     {
         return $this->belongsTo(Team::class);
