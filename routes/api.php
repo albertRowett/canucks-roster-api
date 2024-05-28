@@ -10,5 +10,6 @@ Route::get('/user', function (Request $request) {
 
 Route::controller(PlayerController::class)->group(function () {
     Route::get('/players', 'getPlayers');
+    Route::post('players', 'addPlayer');
     Route::get('/players/{jerseyNumber}', 'getPlayerByJerseyNumber');
 });
