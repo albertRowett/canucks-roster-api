@@ -19,6 +19,15 @@ class Player extends Model
         'updated_at',
     ];
 
+    protected $fillable = [
+        'name',
+        'jersey_number',
+        'date_of_birth',
+        'position_id',
+        'nationality_id',
+        'draft_team_id',
+    ];
+
     public function position(): BelongsTo
     {
         return $this->belongsTo(Position::class);
