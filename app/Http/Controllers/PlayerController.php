@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Services\PlayerService;
+use App\Http\Services\DraftTeamService;
+use App\Http\Services\NationalityService;
+use App\Http\Services\PositionService;
+use App\Http\Services\PreviousTeamService;
 use App\Models\Player;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
@@ -11,11 +14,20 @@ use Illuminate\Support\Facades\DB;
 
 class PlayerController extends Controller
 {
-    protected PlayerService $playerService;
+    protected PositionService $positionService;
 
-    public function __construct(PlayerService $playerService)
+    protected NationalityService $nationalityService;
+
+    protected DraftTeamService $draftTeamService;
+
+    protected PreviousTeamService $previousTeamService;
+
+    public function __construct(PositionService $positionService, NationalityService $nationalityService, DraftTeamService $draftTeamService, PreviousTeamService $previousTeamService)
     {
-        $this->playerService = $playerService;
+        $this->positionService = $positionService;
+        $this->nationalityService = $nationalityService;
+        $this->draftTeamService = $draftTeamService;
+        $this->previousTeamService = $previousTeamService;
     }
 
     public function getPlayers(): JsonResponse
@@ -62,19 +74,19 @@ class PlayerController extends Controller
                 $name = $request->name;
                 $jerseyNumber = $request->jerseyNumber;
                 $dateOfBirth = $request->dateOfBirth;
-                $positionId = $this->playerService->getPositionIdByPositionName($request->position);
-                $nationalityId = $this->playerService->getNationalityIdByNationalityName($request->nationality);
+                $positionId = $this->positionService->getPositionIdByPositionName($request->position);
+                $nationalityId = $this->nationalityService->getNationalityIdByNationalityName($request->nationality);
 
                 if (is_null($request->draftTeam)) {
                     $draftTeamId = null;
                 } else {
-                    $draftTeamId = $this->playerService->getDraftTeamIdByDraftTeamName($request->draftTeam);
+                    $draftTeamId = $this->draftTeamService->getDraftTeamIdByDraftTeamName($request->draftTeam);
                 }
 
                 if (is_null($request->previousTeams)) {
                     $previousTeamIds = null;
                 } else {
-                    $previousTeamIds = $this->playerService->getPreviousTeamIdsByPreviousTeamNames($request->previousTeams);
+                    $previousTeamIds = $this->previousTeamService->getPreviousTeamIdsByPreviousTeamNames($request->previousTeams);
                 }
 
                 $player = Player::create([
