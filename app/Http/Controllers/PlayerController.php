@@ -7,6 +7,7 @@ use App\Models\Player;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PlayerController extends Controller
 {
@@ -57,36 +58,38 @@ class PlayerController extends Controller
         ]);
 
         try {
-            $name = $request->name;
-            $jerseyNumber = $request->jerseyNumber;
-            $dateOfBirth = $request->dateOfBirth;
-            $positionId = $this->playerService->getPositionIdByPositionName($request->position);
-            $nationalityId = $this->playerService->getNationalityIdByNationalityName($request->nationality);
+            DB::transaction(function () use ($request) {
+                $name = $request->name;
+                $jerseyNumber = $request->jerseyNumber;
+                $dateOfBirth = $request->dateOfBirth;
+                $positionId = $this->playerService->getPositionIdByPositionName($request->position);
+                $nationalityId = $this->playerService->getNationalityIdByNationalityName($request->nationality);
 
-            if (is_null($request->draftTeam)) {
-                $draftTeamId = null;
-            } else {
-                $draftTeamId = $this->playerService->getDraftTeamIdByDraftTeamName($request->draftTeam);
-            }
+                if (is_null($request->draftTeam)) {
+                    $draftTeamId = null;
+                } else {
+                    $draftTeamId = $this->playerService->getDraftTeamIdByDraftTeamName($request->draftTeam);
+                }
 
-            if (is_null($request->previousTeams)) {
-                $previousTeamIds = null;
-            } else {
-                $previousTeamIds = $this->playerService->getPreviousTeamIdsByPreviousTeamNames($request->previousTeams);
-            }
+                if (is_null($request->previousTeams)) {
+                    $previousTeamIds = null;
+                } else {
+                    $previousTeamIds = $this->playerService->getPreviousTeamIdsByPreviousTeamNames($request->previousTeams);
+                }
 
-            $player = Player::create([
-                'name' => $name,
-                'jersey_number' => $jerseyNumber,
-                'date_of_birth' => $dateOfBirth,
-                'position_id' => $positionId,
-                'nationality_id' => $nationalityId,
-                'draft_team_id' => $draftTeamId,
-            ]);
+                $player = Player::create([
+                    'name' => $name,
+                    'jersey_number' => $jerseyNumber,
+                    'date_of_birth' => $dateOfBirth,
+                    'position_id' => $positionId,
+                    'nationality_id' => $nationalityId,
+                    'draft_team_id' => $draftTeamId,
+                ]);
 
-            if (! is_null($previousTeamIds)) {
-                $player->previousTeams()->attach($previousTeamIds);
-            }
+                if (! is_null($previousTeamIds)) {
+                    $player->previousTeams()->attach($previousTeamIds);
+                }
+            });
         } catch (QueryException $e) {
             return $this->returnUnexpectedErrorResponse();
         }
