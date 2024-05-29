@@ -10,90 +10,58 @@ use App\Models\Team;
 
 class PlayerService
 {
-    public function getPositionIdByPositionName(string $name): ?int
+    public function getPositionIdByPositionName(string $name): int
     {
         $position = Position::firstOrCreate([
             'name' => $name,
         ]);
 
-        if ($position) {
-            return $position->id;
-        }
-
-        return null;
+        return $position->id;
     }
 
-    public function getNationalityIdByNationalityName(string $name): ?int
+    public function getNationalityIdByNationalityName(string $name): int
     {
         $nationality = Nationality::firstOrCreate([
             'name' => $name,
         ]);
 
-        if ($nationality) {
-            return $nationality->id;
-        }
-
-        return null;
+        return $nationality->id;
     }
 
-    public function getDraftTeamIdByDraftTeamName(string $name): ?int
+    public function getDraftTeamIdByDraftTeamName(string $name): int
     {
         $teamId = $this->getTeamIdByTeamName($name);
 
-        if (is_null($teamId)) {
-            return null;
-        }
-        
         $draftTeam = DraftTeam::firstOrCreate([
             'team_id' => $teamId,
         ]);
 
-        if ($draftTeam) {
-            return $draftTeam->id;
-        }
-
-        return null;
+        return $draftTeam->id;
     }
 
-    public function getPreviousTeamIdsByPreviousTeamNames(array $names): ?array
+    public function getPreviousTeamIdsByPreviousTeamNames(array $names): array
     {
-        $teamIds = array_map(function($name) {
+        $teamIds = array_map(function (string $name): int {
             return $this->getTeamIdByTeamName($name);
         }, $names);
 
-        if (in_array(null, $teamIds, true)) {
-            return null;
-        }
-
-        $previousTeamIds = array_map(function($teamId) {
+        $previousTeamIds = array_map(function (int $teamId): int {
             $previousTeam = PreviousTeam::firstOrCreate([
                 'team_id' => $teamId,
             ]);
 
-            if ($previousTeam) {
-                return $previousTeam->id;
-            }
-
-            return null;
+            return $previousTeam->id;
         }, $teamIds);
-
-        if (in_array(null, $previousTeamIds, true)) {
-            return null;
-        }
 
         return $previousTeamIds;
     }
 
-    private function getTeamIdByTeamName(string $name): ?int
+    private function getTeamIdByTeamName(string $name): int
     {
         $team = Team::firstOrCreate([
             'name' => $name,
         ]);
 
-        if ($team) {
-            return $team->id;
-        }
-
-        return null;
+        return $team->id;
     }
 }
