@@ -23,7 +23,6 @@ class PositionTest extends TestCase
     {
         $position = Position::factory()->create();
         $positionId = $this->positionService->getPositionIdByPositionName($position->name);
-
         $this->assertEquals($position->id, $positionId);
     }
 
