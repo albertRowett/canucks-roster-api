@@ -22,8 +22,8 @@ class DraftTeamTest extends TestCase
     public function test_get_draft_team_id_by_existing_draft_team_name_success(): void
     {
         $draftTeam = DraftTeam::factory()->create();
-        $team = $draftTeam->team;
-        $draftTeamId = $this->draftTeamService->getDraftTeamIdByDraftTeamName($team->name);
+        $teamName = $draftTeam->team->name;
+        $draftTeamId = $this->draftTeamService->getDraftTeamIdByDraftTeamName($teamName);
         $this->assertEquals($draftTeam->id, $draftTeamId);
     }
 
