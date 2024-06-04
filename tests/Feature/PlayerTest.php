@@ -64,4 +64,37 @@ class PlayerTest extends TestCase
                 $json->where('message', 'Player with jersey number 1 not found');
             });
     }
+
+    public function test_add_player_success(): void
+    {
+        $response = $this->postJson('/api/players', [
+            'name' => 'J. T. Miller',
+            'jerseyNumber' => 9,
+            'dateOfBirth' => '1993-03-14',
+            'position' => 'Center',
+            'nationality' => 'USA',
+            'draftTeam' => 'New York Rangers',
+            'previousTeams' => ['New York Rangers', 'Tampa Bay Lightning'],
+        ]);
+        $response->assertStatus(201)
+            ->assertJson(function (AssertableJson $json) {
+                $json->where('message', 'Player added');
+            });
+        $this->assertDatabaseHas('players', [
+            'name' => 'J. T. Miller',
+            'jersey_number' => 9,
+            'date_of_birth' => '1993-03-14',
+            'position_id' => 1,
+            'nationality_id' => 1,
+            'draft_team_id' => 1,
+        ]);
+        $this->assertDatabaseHas('player_previous_team', [
+            'player_id' => 1,
+            'previous_team_id' => 1,
+        ]);
+        $this->assertDatabaseHas('player_previous_team', [
+            'player_id' => 1,
+            'previous_team_id' => 2,
+        ]);
+    }
 }
