@@ -33,7 +33,11 @@ class PlayerController extends Controller
 
     public function getPlayers(): JsonResponse
     {
-        $players = Player::with(['position:id,name', 'nationality:id,name'])->get();
+        try {
+            $players = Player::with(['position:id,name', 'nationality:id,name'])->get();
+        } catch (QueryException $e) {
+            return $this->returnUnexpectedErrorResponse();
+        }
 
         return response()->json([
             'data' => $players,
@@ -43,7 +47,11 @@ class PlayerController extends Controller
 
     public function getPlayerByJerseyNumber(int $jerseyNumber): JsonResponse
     {
-        $player = Player::with(['position', 'nationality', 'draftTeam.team', 'previousTeams.team'])->where('jersey_number', '=', $jerseyNumber)->get();
+        try {
+            $player = Player::with(['position', 'nationality', 'draftTeam.team', 'previousTeams.team'])->where('jersey_number', $jerseyNumber)->get();
+        } catch (QueryException $e) {
+            return $this->returnUnexpectedErrorResponse();
+        }
 
         if ($player->isEmpty()) {
             return response()->json([
