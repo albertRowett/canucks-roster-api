@@ -27,6 +27,8 @@ class PlayerTest extends TestCase
                         'date_of_birth' => 'string',
                         'position.name' => 'string',
                         'nationality.name' => 'string',
+                        'draft_team.team.name' => 'string',
+                        'previous_teams.0.team.name' => 'string',
                     ]);
                 })
                     ->where('message', 'Players successfully retrieved');

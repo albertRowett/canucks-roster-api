@@ -34,7 +34,7 @@ class PlayerController extends Controller
     public function getPlayers(): JsonResponse
     {
         try {
-            $players = Player::with(['position:id,name', 'nationality:id,name'])->get();
+            $players = Player::with(['position', 'nationality', 'draftTeam.team', 'previousTeams.team'])->get();
         } catch (QueryException $e) {
             return $this->returnUnexpectedErrorResponse();
         }
