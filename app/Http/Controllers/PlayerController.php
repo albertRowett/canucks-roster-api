@@ -11,6 +11,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class PlayerController extends Controller
 {
@@ -111,10 +112,82 @@ class PlayerController extends Controller
         ], 201);
     }
 
+    public function updatePlayer(int $jerseyNumber, Request $request): JsonResponse
+    {
+        try {
+            DB::transaction(function () use ($jerseyNumber, $request) {
+                $player = Player::with(['position', 'nationality', 'draftTeam.team', 'previousTeams.team'])->where('jersey_number', $jerseyNumber)->get()->first();
+
+                if (is_null($player)) {
+                    return $this->returnPlayerNotFoundResponse($jerseyNumber);
+                }
+
+                $request->validate([
+                    'name' => 'string|max:255',
+                    'jerseyNumber' => ['numeric', 'integer', 'between:1,99', Rule::unique('players', 'jersey_number')->ignore($jerseyNumber, 'jersey_number')],
+                    'dateOfBirth' => 'date_format:Y-m-d',
+                    'position' => 'string|in:Goaltender,Defense,Center,Left wing,Right wing',
+                    'nationality' => 'string|max:255',
+                    'draftTeam' => 'nullable|string|max:255',
+                    'previousTeams' => 'nullable|array',
+                    'previousTeams.*' => 'string|max:255|distinct',
+                ]);
+
+                if ($request->has('name')) {
+                    $player->name = $request->name;
+                }
+
+                if ($request->has('jerseyNumber')) {
+                    $player->jersey_number = $request->jerseyNumber;
+                }
+
+                if ($request->has('dateOfBirth')) {
+                    $player->date_of_birth = $request->dateOfBirth;
+                }
+
+                if ($request->has('position')) {
+                    $positionId = $this->positionService->getPositionIdByPositionName($request->position);
+                    $player->position_id = $positionId;
+                }
+
+                if ($request->has('nationality')) {
+                    $nationalityId = $this->nationalityService->getNationalityIdByNationalityName($request->nationality);
+                    $player->nationality_id = $nationalityId;
+                }
+
+                if ($request->has('draftTeam')) {
+                    $draftTeamId = is_null($request->draftTeam) ? null : $this->draftTeamService->getDraftTeamIdByDraftTeamName($request->draftTeam);
+                    $player->draft_team_id = $draftTeamId;
+                }
+
+                $player->save();
+
+                if ($request->has('previousTeams')) {
+                    $previousTeamIds = is_null($request->previousTeams) ? null : $this->previousTeamService->getPreviousTeamIdsByPreviousTeamNames($request->previousTeams);
+                    $player->previousTeams()->sync($previousTeamIds);
+                }
+
+            });
+        } catch (QueryException $e) {
+            return $this->returnUnexpectedErrorResponse();
+        }
+
+        return response()->json([
+            'message' => 'Player updated',
+        ]);
+    }
+
     private function returnUnexpectedErrorResponse(): JsonResponse
     {
         return response()->json([
             'message' => 'Unexpected error occurred',
         ], 500);
+    }
+
+    private function returnPlayerNotFoundResponse($jerseyNumber): JsonResponse
+    {
+        return response()->json([
+            'message' => "Player with jersey number $jerseyNumber not found",
+        ], 404);
     }
 }
