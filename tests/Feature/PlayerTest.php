@@ -42,7 +42,7 @@ class PlayerTest extends TestCase
         $response = $this->getJson("/api/players/$player->jersey_number");
         $response->assertStatus(200)
             ->assertJson(function (AssertableJson $json) {
-                $json->has('data', 1, function (AssertableJson $json) {
+                $json->has('data', function (AssertableJson $json) {
                     $json->whereAllType([
                         'id' => 'integer',
                         'name' => 'string',

@@ -48,15 +48,13 @@ class PlayerController extends Controller
     public function getPlayerByJerseyNumber(int $jerseyNumber): JsonResponse
     {
         try {
-            $player = Player::with(['position', 'nationality', 'draftTeam.team', 'previousTeams.team'])->where('jersey_number', $jerseyNumber)->get();
+            $player = Player::with(['position', 'nationality', 'draftTeam.team', 'previousTeams.team'])->where('jersey_number', $jerseyNumber)->get()->first();
         } catch (QueryException $e) {
             return $this->returnUnexpectedErrorResponse();
         }
 
-        if ($player->isEmpty()) {
-            return response()->json([
-                'message' => "Player with jersey number $jerseyNumber not found",
-            ], 404);
+        if (is_null($player)) {
+            return $this->returnPlayerNotFoundResponse($jerseyNumber);
         }
 
         return response()->json([
