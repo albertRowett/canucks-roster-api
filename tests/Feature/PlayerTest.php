@@ -121,4 +121,44 @@ class PlayerTest extends TestCase
         $response->assertStatus(422)
             ->assertInvalid(['name', 'jerseyNumber', 'dateOfBirth', 'position', 'nationality', 'draftTeam', 'previousTeams']);
     }
+
+    public function test_update_player_success(): void
+    {
+        $player = Player::factory()->has(PreviousTeam::factory()->count(1))->create();
+
+        $response = $this->putJson("/api/players/$player->jersey_number", [
+            'name' => 'J. T. Miller',
+            'jerseyNumber' => 9,
+            'dateOfBirth' => '1993-03-14',
+            'position' => 'Center',
+            'nationality' => 'USA',
+            'draftTeam' => 'New York Rangers',
+            'previousTeams' => ['New York Rangers', 'Tampa Bay Lightning'],
+        ]);
+        $response->assertStatus(200)
+            ->assertJson(function (AssertableJson $json) {
+                $json->where('message', 'Player updated');
+            });
+        $this->assertDatabaseCount('players', 1);
+        $this->assertDatabaseHas('players', [
+            'name' => 'J. T. Miller',
+            'jersey_number' => 9,
+            'date_of_birth' => '1993-03-14',
+            'position_id' => 2,
+            'nationality_id' => 2,
+            'draft_team_id' => 2,
+        ]);
+        $this->assertDatabaseMissing('player_previous_team', [
+            'player_id' => 1,
+            'previous_team_id' => 1,
+        ]);
+        $this->assertDatabaseHas('player_previous_team', [
+            'player_id' => 1,
+            'previous_team_id' => 2,
+        ]);
+        $this->assertDatabaseHas('player_previous_team', [
+            'player_id' => 1,
+            'previous_team_id' => 3,
+        ]);
+    }
 }
