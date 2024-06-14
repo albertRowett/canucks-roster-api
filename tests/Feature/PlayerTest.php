@@ -161,4 +161,13 @@ class PlayerTest extends TestCase
             'previous_team_id' => 3,
         ]);
     }
+
+    public function test_update_player_not_found(): void
+    {
+        $response = $this->putJson('/api/players/1');
+        $response->assertStatus(404)
+            ->assertJson(function (AssertableJson $json) {
+                $json->where('message', 'Player with jersey number 1 not found');
+            });
+    }
 }
