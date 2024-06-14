@@ -58,7 +58,7 @@ class PlayerTest extends TestCase
             });
     }
 
-    public function test_player_not_found(): void
+    public function test_get_player_not_found(): void
     {
         $response = $this->getJson('/api/players/1');
         $response->assertStatus(404)
