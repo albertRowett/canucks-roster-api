@@ -170,4 +170,21 @@ class PlayerTest extends TestCase
                 $json->where('message', 'Player with jersey number 1 not found');
             });
     }
+
+    public function test_update_player_invalid_data(): void
+    {
+        $player = Player::factory()->has(PreviousTeam::factory()->count(1))->create();
+        
+        $response = $this->putJson("/api/players/$player->jersey_number", [
+            'name' => ['J. T. Miller'],             // validation requires string
+            'jerseyNumber' => 9.1,                  // validation requires integer
+            'dateOfBirth' => '14-03-1993',          // validation requires Y-m-d format
+            'position' => 'Forward',                // validation requires one of 'Goaltender'/'Defense'/'Center'/'Left wing'/'Right wing'
+            'nationality' => ['USA'],               // validation requires string
+            'draftTeam' => 1,                       // validation requires string
+            'previousTeams' => 'New York Rangers',  // validation requires array
+        ]);
+        $response->assertStatus(422)
+            ->assertInvalid(['name', 'jerseyNumber', 'dateOfBirth', 'position', 'nationality', 'draftTeam', 'previousTeams']);
+    }
 }
