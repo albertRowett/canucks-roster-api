@@ -127,6 +127,12 @@ class PlayerController extends Controller
                 return $this->returnPlayerNotFoundResponse($jerseyNumber);
             }
 
+            if (! $request->hasAny(['name', 'jerseyNumber', 'dateOfBirth', 'position', 'nationality', 'draftTeam', 'previousTeams'])) {
+                return response()->json([
+                    'message' => 'A minimum of 1 data field is required',
+                ], 422);
+            }
+
             $request->validate([
                 'name' => 'string|max:255',
                 'jerseyNumber' => ['numeric', 'integer', 'between:1,99', Rule::unique('players', 'jersey_number')->ignore($jerseyNumber, 'jersey_number')],
