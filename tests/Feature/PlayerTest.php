@@ -124,7 +124,7 @@ class PlayerTest extends TestCase
 
     public function test_update_player_success(): void
     {
-        $player = Player::factory()->has(PreviousTeam::factory()->count(1))->create();
+        $player = Player::factory()->has(PreviousTeam::factory())->create();
 
         $response = $this->putJson("/api/players/$player->jersey_number", [
             'name' => 'J. T. Miller',
@@ -171,10 +171,21 @@ class PlayerTest extends TestCase
             });
     }
 
+    public function test_update_player_no_data(): void
+    {
+        $player = Player::factory()->create();
+
+        $response = $this->putJson("/api/players/$player->jersey_number", []);
+        $response->assertStatus(422)
+            ->assertJson(function (AssertableJson $json) {
+                $json->where('message', 'A minimum of 1 data field is required');
+            });
+    }
+
     public function test_update_player_invalid_data(): void
     {
-        $player = Player::factory()->has(PreviousTeam::factory()->count(1))->create();
-        
+        $player = Player::factory()->create();
+
         $response = $this->putJson("/api/players/$player->jersey_number", [
             'name' => ['J. T. Miller'],             // validation requires string
             'jerseyNumber' => 9.1,                  // validation requires integer
