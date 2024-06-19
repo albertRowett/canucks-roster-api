@@ -62,10 +62,7 @@ class PlayerTest extends TestCase
     public function test_get_player_not_found(): void
     {
         $response = $this->getJson('/api/players/1');
-        $response->assertStatus(404)
-            ->assertJson(function (AssertableJson $json) {
-                $json->where('message', 'Player with jersey number 1 not found');
-            });
+        $this->assertPlayerNotFound($response);
     }
 
     public function test_add_player_success(): void
@@ -166,10 +163,7 @@ class PlayerTest extends TestCase
     public function test_update_player_not_found(): void
     {
         $response = $this->putJson('/api/players/1');
-        $response->assertStatus(404)
-            ->assertJson(function (AssertableJson $json) {
-                $json->where('message', 'Player with jersey number 1 not found');
-            });
+        $this->assertPlayerNotFound($response);
     }
 
     public function test_update_player_no_data(): void
