@@ -212,6 +212,12 @@ class PlayerTest extends TestCase
         $this->assertSoftDeleted($player);
     }
 
+    public function test_remove_player_not_found(): void
+    {
+        $response = $this->patchJson('api/players/1');
+        $this->assertPlayerNotFound($response);
+    }
+
     private function assertPlayerNotFound(TestResponse $response): void
     {
         $response->assertStatus(404)
