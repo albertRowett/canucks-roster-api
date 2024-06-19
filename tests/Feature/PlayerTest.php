@@ -6,6 +6,7 @@ use App\Models\Player;
 use App\Models\PreviousTeam;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
 
 class PlayerTest extends TestCase
@@ -209,5 +210,13 @@ class PlayerTest extends TestCase
                 $json->where('message', 'Player removed');
             });
         $this->assertSoftDeleted($player);
+    }
+
+    private function assertPlayerNotFound(TestResponse $response): void
+    {
+        $response->assertStatus(404)
+            ->assertJson(function (AssertableJson $json) {
+                $json->where('message', 'Player with jersey number 1 not found');
+            });
     }
 }
