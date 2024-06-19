@@ -198,4 +198,16 @@ class PlayerTest extends TestCase
         $response->assertStatus(422)
             ->assertInvalid(['name', 'jerseyNumber', 'dateOfBirth', 'position', 'nationality', 'draftTeam', 'previousTeams']);
     }
+
+    public function test_remove_player_success(): void
+    {
+        $player = Player::factory()->create();
+
+        $response = $this->patchJson("/api/players/$player->jersey_number");
+        $response->assertStatus(200)
+            ->assertJson(function (AssertableJson $json) {
+                $json->where('message', 'Player removed');
+            });
+        $this->assertSoftDeleted($player);
+    }
 }
