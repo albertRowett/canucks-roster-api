@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('nationality_id');
             $table->foreignId('draft_team_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
