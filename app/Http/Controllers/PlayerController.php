@@ -188,6 +188,25 @@ class PlayerController extends Controller
         ]);
     }
 
+    public function removePlayer(int $jerseyNumber): JsonResponse
+    {
+        $query = Player::where('jersey_number', $jerseyNumber);
+
+        try {
+            if ($query->exists()) {
+                $query->delete();
+            } else {
+                return $this->returnPlayerNotFoundResponse($jerseyNumber);
+            }
+        } catch (QueryException $e) {
+            return $this->returnUnexpectedErrorResponse();
+        }
+
+        return response()->json([
+            'message' => 'Player removed',
+        ]);
+    }
+
     private function returnUnexpectedErrorResponse(): JsonResponse
     {
         return response()->json([
