@@ -295,6 +295,18 @@ class PlayerTest extends TestCase
             ->assertInvalid('action');
     }
 
+    public function test_delete_player_success():void
+    {
+        $player = Player::factory()->create();
+
+        $response = $this->deleteJson("/api/players/$player->jersey_number");
+        $response->assertStatus(200)
+            ->assertJson(function (AssertableJson $json) {
+                $json->where('message', 'Player deleted');
+            });
+        $this->assertModelMissing($player);
+    }
+
     private function assertPlayerNotFound(TestResponse $response): void
     {
         $response->assertStatus(404)
