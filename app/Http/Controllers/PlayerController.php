@@ -130,7 +130,7 @@ class PlayerController extends Controller
     public function updatePlayer(int $jerseyNumber, Request $request): JsonResponse
     {
         try {
-            $player = Player::with(['position', 'nationality', 'draftTeam.team', 'previousTeams.team'])->where('jersey_number', $jerseyNumber)->first();
+            $player = Player::with(['position', 'nationality', 'draftTeam.team', 'previousTeams.team'])->where('jersey_number', $jerseyNumber)->withTrashed()->first();
 
             if (is_null($player)) {
                 return $this->returnPlayerNotFoundResponse($jerseyNumber);
