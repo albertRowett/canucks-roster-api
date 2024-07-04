@@ -235,7 +235,7 @@ class PlayerTest extends TestCase
         $this->assertSoftDeleted($player);
     }
 
-    public function test_update_player_status_player_already_removed(): void
+    public function test_remove_player_already_removed(): void
     {
         $player = Player::factory()->trashed()->create();
 
@@ -271,7 +271,7 @@ class PlayerTest extends TestCase
         $this->assertNotSoftDeleted($player);
     }
 
-    public function test_remove_player_not_found(): void
+    public function test_update_player_status_player_not_found(): void
     {
         $response = $this->patchJson('api/players/1');
         $this->assertPlayerNotFound($response);
