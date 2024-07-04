@@ -277,6 +277,24 @@ class PlayerTest extends TestCase
         $this->assertPlayerNotFound($response);
     }
 
+    public function test_update_player_status_no_action(): void
+    {
+        $player = Player::factory()->create();
+
+        $response = $this->patchJson("/api/players/$player->jersey_number");
+        $response->assertStatus(422)
+            ->assertInvalid('action');
+    }
+
+    public function test_update_player_status_invalid_action(): void
+    {
+        $player = Player::factory()->create();
+
+        $response = $this->patchJson("/api/players/$player->jersey_number", ['action' => 'another action']);
+        $response->assertStatus(422)
+            ->assertInvalid('action');
+    }
+
     private function assertPlayerNotFound(TestResponse $response): void
     {
         $response->assertStatus(404)
