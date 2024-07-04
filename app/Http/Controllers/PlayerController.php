@@ -197,23 +197,44 @@ class PlayerController extends Controller
         ]);
     }
 
-    public function removePlayer(int $jerseyNumber): JsonResponse
+    public function changePlayerStatus(int $jerseyNumber, Request $request): JsonResponse
     {
-        $query = Player::where('jersey_number', $jerseyNumber);
-
         try {
-            if ($query->exists()) {
-                $query->delete();
-            } else {
+            $player = Player::where('jersey_number', $jerseyNumber)->withTrashed()->first();
+
+            if (is_null($player)) {
                 return $this->returnPlayerNotFoundResponse($jerseyNumber);
+            }
+
+            $request->validate(['action' => 'required|in:remove,restore']);
+            $action = $request->action;
+
+            $statusCode = 200;
+
+            if ($action === 'remove') {
+                if ($player->trashed()) {
+                    $message = 'Player already removed from roster';
+                    $statusCode = 400;
+                } else {
+                    $player->delete();
+                    $message = 'Player removed from roster';
+                }
+            } else {
+                if ($player->trashed()) {
+                    $player->restore();
+                    $message = 'Player restored to roster';
+                } else {
+                    $message = 'Player already on roster';
+                    $statusCode = 400;
+                }
             }
         } catch (QueryException $e) {
             return $this->returnUnexpectedErrorResponse();
         }
 
         return response()->json([
-            'message' => 'Player removed',
-        ]);
+            'message' => $message,
+        ], $statusCode);
     }
 
     private function returnUnexpectedErrorResponse(): JsonResponse

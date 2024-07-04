@@ -13,5 +13,5 @@ Route::controller(PlayerController::class)->group(function () {
     Route::post('/players', 'addPlayer');
     Route::get('/players/{jerseyNumber}', 'getPlayerByJerseyNumber');
     Route::put('/players/{jerseyNumber}', 'updatePlayer');
-    Route::patch('/players/{jerseyNumber}', 'removePlayer');
+    Route::patch('/players/{jerseyNumber}', 'changePlayerStatus');
 });
