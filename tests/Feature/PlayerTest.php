@@ -227,10 +227,10 @@ class PlayerTest extends TestCase
     {
         $player = Player::factory()->create();
 
-        $response = $this->patchJson("/api/players/$player->jersey_number");
+        $response = $this->patchJson("/api/players/$player->jersey_number", ['action' => 'remove']);
         $response->assertStatus(200)
             ->assertJson(function (AssertableJson $json) {
-                $json->where('message', 'Player removed');
+                $json->where('message', 'Player removed from roster');
             });
         $this->assertSoftDeleted($player);
     }
