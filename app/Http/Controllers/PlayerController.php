@@ -43,7 +43,7 @@ class PlayerController extends Controller
         }
 
         try {
-            $players = $query->get();
+            $players = $query->get()->makeHidden(['deleted_at']);
         } catch (QueryException $e) {
             return $this->returnUnexpectedErrorResponse();
         }
@@ -57,7 +57,7 @@ class PlayerController extends Controller
     public function getPlayerByJerseyNumber(int $jerseyNumber): JsonResponse
     {
         try {
-            $player = Player::with(['position', 'nationality', 'draftTeam.team', 'previousTeams.team'])->where('jersey_number', $jerseyNumber)->get()->first();
+            $player = Player::with(['position', 'nationality', 'draftTeam.team', 'previousTeams.team'])->where('jersey_number', $jerseyNumber)->withTrashed()->first();
         } catch (QueryException $e) {
             return $this->returnUnexpectedErrorResponse();
         }

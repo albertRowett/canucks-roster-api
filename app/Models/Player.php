@@ -19,7 +19,6 @@ class Player extends Model
         'draft_team_id',
         'created_at',
         'updated_at',
-        'deleted_at',
     ];
 
     protected $fillable = [
