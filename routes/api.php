@@ -14,4 +14,5 @@ Route::controller(PlayerController::class)->group(function () {
     Route::get('/players/{jerseyNumber}', 'getPlayerByJerseyNumber');
     Route::put('/players/{jerseyNumber}', 'updatePlayer');
     Route::patch('/players/{jerseyNumber}', 'changePlayerStatus');
+    Route::delete('/players/{jerseyNumber}', 'deletePlayer');
 });
