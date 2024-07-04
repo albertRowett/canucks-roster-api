@@ -307,6 +307,12 @@ class PlayerTest extends TestCase
         $this->assertModelMissing($player);
     }
 
+    public function test_delete_player_not_found(): void
+    {
+        $response = $this->deleteJson('/api/players/1');
+        $this->assertPlayerNotFound($response);
+    }
+
     private function assertPlayerNotFound(TestResponse $response): void
     {
         $response->assertStatus(404)
