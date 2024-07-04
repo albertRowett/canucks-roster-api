@@ -31,10 +31,19 @@ class PlayerController extends Controller
         $this->previousTeamService = $previousTeamService;
     }
 
-    public function getPlayers(): JsonResponse
+    public function getPlayers(Request $request): JsonResponse
     {
+        $request->validate(['removed' => 'nullable|boolean']);
+        $removed = $request->removed;
+
+        $query = Player::with(['position', 'nationality', 'draftTeam.team', 'previousTeams.team']);
+
+        if ($removed) {
+            $query->onlyTrashed();
+        }
+
         try {
-            $players = Player::with(['position', 'nationality', 'draftTeam.team', 'previousTeams.team'])->get();
+            $players = $query->get();
         } catch (QueryException $e) {
             return $this->returnUnexpectedErrorResponse();
         }
