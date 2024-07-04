@@ -247,6 +247,30 @@ class PlayerTest extends TestCase
         $this->assertSoftDeleted($player);
     }
 
+    public function test_restore_player_success(): void
+    {
+        $player = Player::factory()->trashed()->create();
+
+        $response = $this->patchJson("/api/players/$player->jersey_number", ['action' => 'restore']);
+        $response->assertStatus(200)
+            ->assertJson(function (AssertableJson $json) {
+                $json->where('message', 'Player restored to roster');
+            });
+        $this->assertNotSoftDeleted($player);
+    }
+
+    public function test_restore_player_already_on_roster(): void
+    {
+        $player = Player::factory()->create();
+
+        $response = $this->patchJson("/api/players/$player->jersey_number", ['action' => 'restore']);
+        $response->assertStatus(400)
+            ->assertJson(function (AssertableJson $json) {
+                $json->where('message', 'Player already on roster');
+            });
+        $this->assertNotSoftDeleted($player);
+    }
+
     public function test_remove_player_not_found(): void
     {
         $response = $this->patchJson('api/players/1');
