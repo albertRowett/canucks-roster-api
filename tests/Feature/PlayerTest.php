@@ -39,7 +39,7 @@ class PlayerTest extends TestCase
     public function test_get_removed_players_success(): void
     {
         Player::factory()->create();
-        Player::factory(['deleted_at' => fake()->date()])->has(PreviousTeam::factory())->create();
+        Player::factory()->trashed()->has(PreviousTeam::factory())->create();
 
         $response = $this->getJson('api/players?removed=1');
         $response->assertStatus(200)
