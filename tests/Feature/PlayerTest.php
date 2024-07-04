@@ -62,7 +62,11 @@ class PlayerTest extends TestCase
 
     public function test_get_player_by_jersey_number_success(): void
     {
-        $player = Player::factory()->has(PreviousTeam::factory())->create();
+        if (rand(0, 1)) {
+            $player = Player::factory()->trashed()->has(PreviousTeam::factory())->create();
+        } else {
+            $player = Player::factory()->has(PreviousTeam::factory())->create();
+        }
 
         $response = $this->getJson("/api/players/$player->jersey_number");
         $response->assertStatus(200)
@@ -73,6 +77,7 @@ class PlayerTest extends TestCase
                         'name' => 'string',
                         'jersey_number' => 'integer',
                         'date_of_birth' => 'string',
+                        'deleted_at' => 'string|null',
                         'position.name' => 'string',
                         'nationality.name' => 'string',
                         'draft_team.team.name' => 'string',
