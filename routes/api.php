@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\PositionController;
 use Illuminate\Http\Request;
@@ -19,3 +20,4 @@ Route::controller(PlayerController::class)->group(function () {
 });
 
 Route::get('/positions', [PositionController::class, 'getPositions']);
+Route::get('/nationalities', [NationalityController::class, 'getNationalities']);
