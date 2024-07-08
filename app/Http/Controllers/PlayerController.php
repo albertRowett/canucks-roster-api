@@ -90,18 +90,18 @@ class PlayerController extends Controller
 
     public function addPlayer(Request $request): JsonResponse
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'jerseyNumber' => 'required|numeric|integer|between:1,99|unique:players,jersey_number',
-            'dateOfBirth' => 'required|date_format:Y-m-d',
-            'position' => 'required|string|in:Goaltender,Defense,Center,Left wing,Right wing',
-            'nationality' => 'required|string|max:255',
-            'draftTeam' => 'nullable|string|max:255',
-            'previousTeams' => 'nullable|array',
-            'previousTeams.*' => 'string|max:255|distinct',
-        ]);
-
         try {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'jerseyNumber' => 'required|numeric|integer|between:1,99|unique:players,jersey_number',
+                'dateOfBirth' => 'required|date_format:Y-m-d',
+                'position' => 'required|string|in:Goaltender,Defense,Center,Left wing,Right wing',
+                'nationality' => 'required|string|max:255',
+                'draftTeam' => 'nullable|string|max:255',
+                'previousTeams' => 'nullable|array',
+                'previousTeams.*' => 'string|max:255|distinct',
+            ]);
+
             DB::transaction(function () use ($request) {
                 $name = $request->name;
                 $jerseyNumber = $request->jerseyNumber;
