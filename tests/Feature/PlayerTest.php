@@ -51,6 +51,13 @@ class PlayerTest extends TestCase
             });
     }
 
+    public function test_get_removed_players_invalid(): void
+    {
+        $response = $this->getJson('/api/players?removed=non-boolean'); // validation requires boolean
+        $response->assertStatus(422)
+            ->assertInvalid('removed');
+    }
+
     public function test_get_position_filtered_players_success(): void
     {
         Position::factory(['name' => 'Center'])->create();
@@ -65,6 +72,13 @@ class PlayerTest extends TestCase
             });
     }
 
+    public function test_get_filtered_players_invalid_position(): void
+    {
+        $response = $this->getJson('/api/players?position=Forward');    // validation requires one of 'Goaltender'/'Defense'/'Center'/'Left wing'/'Right wing'
+        $response->assertStatus(422)
+            ->assertInvalid('position');
+    }
+
     public function test_get_nationality_filtered_players_success(): void
     {
         Nationality::factory(['name' => 'USA'])->create();
@@ -77,6 +91,13 @@ class PlayerTest extends TestCase
                 $json->has('data', 1)
                     ->where('message', 'Players successfully retrieved');
             });
+    }
+
+    public function test_get_filtered_players_invalid_nationality(): void
+    {
+        $response = $this->getJson('/api/players?nationality=USA');     // validation requires name from nationalities table in database
+        $response->assertStatus(422)
+            ->assertInvalid('nationality');
     }
 
     public function test_get_player_by_jersey_number_success(): void
