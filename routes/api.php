@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\PositionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,3 +17,5 @@ Route::controller(PlayerController::class)->group(function () {
     Route::patch('/players/{jerseyNumber}', 'changePlayerStatus');
     Route::delete('/players/{jerseyNumber}', 'deletePlayer');
 });
+
+Route::get('/positions', [PositionController::class, 'getPositions']);
