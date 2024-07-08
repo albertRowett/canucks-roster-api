@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Http\Services\NationalityService;
 use App\Models\Nationality;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class NationalityTest extends TestCase
@@ -33,5 +34,19 @@ class NationalityTest extends TestCase
             'id' => 1,
             'name' => 'USA',
         ]);
+    }
+
+    public function test_get_nationalities_success(): void
+    {
+        Nationality::factory()->count(2)->create();
+
+        $response = $this->getJson('/api/nationalities');
+        $response->assertStatus(200)
+            ->assertJson(function (AssertableJson $json) {
+                $json->has('data', 2, function (AssertableJson $json) {
+                    $json->whereType('name', 'string');
+                })
+                    ->where('message', 'Nationalities successfully retrieved');
+            });
     }
 }
