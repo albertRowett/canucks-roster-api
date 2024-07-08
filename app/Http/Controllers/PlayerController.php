@@ -33,16 +33,32 @@ class PlayerController extends Controller
 
     public function getPlayers(Request $request): JsonResponse
     {
-        $request->validate(['removed' => 'nullable|boolean']);
-        $removed = $request->removed;
-
-        $query = Player::with(['position', 'nationality', 'draftTeam.team', 'previousTeams.team']);
-
-        if ($removed) {
-            $query->onlyTrashed();
-        }
-
         try {
+            $request->validate([
+                'removed' => 'nullable|boolean',
+                'position' => 'nullable|string|in:Goaltender,Defense,Center,Left wing,Right wing',
+                'nationality' => 'nullable|string|exists:nationalities,name',
+            ]);
+            $removed = $request->removed;
+            $position = $request->position;
+            $nationality = $request->nationality;
+
+            $query = Player::with(['position', 'nationality', 'draftTeam.team', 'previousTeams.team']);
+
+            if ($removed) {
+                $query->onlyTrashed();
+            }
+
+            if ($position) {
+                $positionId = $this->positionService->getPositionIdByPositionName($position);
+                $query->where('position_id', $positionId);
+            }
+
+            if ($nationality) {
+                $nationalityId = $this->nationalityService->getNationalityIdByNationalityName($nationality);
+                $query->where('nationality_id', $nationalityId);
+            }
+
             $players = $query->get()->makeHidden(['deleted_at']);
         } catch (QueryException $e) {
             return $this->returnUnexpectedErrorResponse();
