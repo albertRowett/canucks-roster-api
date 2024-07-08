@@ -2,7 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Models\Nationality;
 use App\Models\Player;
+use App\Models\Position;
 use App\Models\PreviousTeam;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Testing\Fluent\AssertableJson;
@@ -58,6 +60,56 @@ class PlayerTest extends TestCase
                 })
                     ->where('message', 'Players successfully retrieved');
             });
+    }
+
+    public function test_get_position_filtered_players_success(): void
+    {
+        Position::factory(['name' => 'Center'])->create();
+        Player::factory()->create();
+        Player::factory(['position_id' => 1])->has(PreviousTeam::factory())->create();
+
+        $response = $this->getJson('/api/players?position=Center');
+        $response->assertStatus(200)
+            ->assertJson(function (AssertableJson $json) {
+                $json->has('data', 1, function (AssertableJson $json) {
+                    $json->whereAllType([
+                        'id' => 'integer',
+                        'name' => 'string',
+                        'jersey_number' => 'integer',
+                        'date_of_birth' => 'string',
+                        'position.name' => 'string',
+                        'nationality.name' => 'string',
+                        'draft_team.team.name' => 'string',
+                        'previous_teams.0.team.name' => 'string',
+                    ]);
+                })
+                    ->where('message', 'Players successfully retrieved');
+            });
+    }
+
+    public function test_get_nationality_filtered_players_success(): void
+    {
+        Nationality::factory(['name' => 'USA'])->create();
+        Player::factory()->create();
+        Player::factory(['nationality_id' => 1])->has(PreviousTeam::factory())->create();
+
+        $response = $this->getJson('/api/players?nationality=USA');
+        $response->assertStatus(200)
+        ->assertJson(function (AssertableJson $json) {
+            $json->has('data', 1, function (AssertableJson $json) {
+                $json->whereAllType([
+                    'id' => 'integer',
+                    'name' => 'string',
+                    'jersey_number' => 'integer',
+                    'date_of_birth' => 'string',
+                    'position.name' => 'string',
+                    'nationality.name' => 'string',
+                    'draft_team.team.name' => 'string',
+                    'previous_teams.0.team.name' => 'string',
+                ]);
+            })
+                ->where('message', 'Players successfully retrieved');
+        });
     }
 
     public function test_get_player_by_jersey_number_success(): void
@@ -295,7 +347,7 @@ class PlayerTest extends TestCase
             ->assertInvalid('action');
     }
 
-    public function test_delete_player_success():void
+    public function test_delete_player_success(): void
     {
         $player = Player::factory()->create();
 
