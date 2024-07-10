@@ -1,0 +1,83 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+    --border-color: #d0d7de;
+    --line-color: #dee3e8;
+    --code-bg-color: #eff1f3;
+    --code-blue-color: #0550ae;
+    --code-dark-blue-color: #0a3069;
+    --code-purple-color: #6639ba;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.375rem;
+    margin: 1rem;
+}
+
+.container {
+    max-width: 1012px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-weight: 600;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--line-color);
+    margin: 0 0 1rem 0;
+}
+
+h2 {
+    font-weight: 600;
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid var(--line-color);
+    margin: 1.5rem 0 1rem 0;
+}
+
+h3 {
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin: 1.5rem 0 1rem 0;
+}
+
+p {
+    margin: 1rem 0;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.code {
+    background-color: var(--code-bg-color);
+    padding: 0.17rem 0.34rem;
+    border-radius: 0.375rem;
+    margin: 0;
+}
+
+.codeblock {
+    padding: 1rem;
+}
+
+.json-key, .json-int, .js-property-key, .js-arrow {
+    color: var(--code-blue-color);
+}
+
+.json-str, .js-argument, .js-property-value {
+    color: var(--code-dark-blue-color);
+}
+
+.js-method {
+    color: var(--code-purple-color);
+}
+
+.subsequent-bullet {
+    margin-top: 0.25rem;
+}
