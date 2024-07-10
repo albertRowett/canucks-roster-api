@@ -45,7 +45,7 @@
                     <p class="bold">Success Response:</p>
                     <ul>
                         <li><p><span class="bold">Code:</span> 200 OK</p></li>
-                        <li><p class="bold">Content:</p></li>
+                        <p class="bold">Content:</p>
                         <pre class="code codeblock"><code>{
     <span class="json-key">"data"</span>: [
         {
@@ -86,7 +86,7 @@
                     <p class="bold">Error Response:</p>
                     <ul>
                         <li><p><span class="bold">Code:</span> 422 UNPROCESSABLE CONTENT</p></li>
-                        <li><p class="bold">Content:</p></li>
+                        <p class="bold">Content:</p>
                         <pre class="code codeblock"><code>{
     <span class="json-key">"message"</span>: <span class="json-str">"The removed field must be true or false. (and 2 more errors)"</span>,
     <span class="json-key">"errors"</span>: {
@@ -95,6 +95,12 @@
         <span class="json-key">"nationality"</span>: [<span class="json-str">"The selected nationality is invalid."</span>]
     }
 }</code></pre>
+                    </ul>
+                    <p>OR</p>
+                    <ul>
+                        <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
+                        <p class="bold">Content:</p>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred" }</span></code></pre>
                     </ul>
                 </li>
                 <li>
