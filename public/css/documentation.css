@@ -66,7 +66,7 @@ p {
     padding: 1rem;
 }
 
-.json-key, .json-int, .js-property-key, .js-arrow {
+.json-key, .json-int, .json-null, .js-property-key, .js-arrow {
     color: var(--code-blue-color);
 }
 

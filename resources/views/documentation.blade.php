@@ -120,6 +120,98 @@
                 </li>
             </ul>
         </section>
+        <section> <!-- Return a specific player -->
+            <h3>Return a specific player</h3>
+            <p>Returns JSON data about a specific player. Also returns data for players removed from the roster, but not deleted.</p>
+            <ul>
+                <li>
+                    <p class="bold">URL:</p>
+                    <p>/api/players/{jersey_number}</p>
+                </li>
+                <li>
+                    <p class="bold">Method:</p>
+                    <p><code class="code">GET</code></p>
+                </li>
+                <li>
+                    <p class="bold">URL Params:</p>
+                    <p class="bold">Required:</p>
+                    <p>There are no required URL params</p>
+                    <p class="bold">Optional:</p>
+                    <p>There are no optional URL params</p>
+                    <p class="bold">Example:</p>
+                    <p><code class="code">/api/players/9</code></p>
+                </li>
+                <li>
+                    <p class="bold">Success Response:</p>
+                    <ul>
+                        <li><p><span class="bold">Code:</span> 200 OK</p></li>
+                        <p class="bold">Content:</p>
+                        <pre class="code codeblock"><code>{
+    <span class="json-key">"data"</span>: {
+        <span class="json-key">"id"</span>: <span class="json-int">9</span>,
+        <span class="json-key">"name"</span>: <span class="json-str">"J. T. Miller"</span>,
+        <span class="json-key">"jersey_number"</span>: <span class="json-int">9</span>,
+        <span class="json-key">"date_of_birth"</span>: <span class="json-str">"1993-03-14"</span>,
+        <span class="json-key">"deleted_at"</span>: <span class="json-null">null</span>,
+        <span class="json-key">"position"</span>: {
+            <span class="json-key">"name"</span>: <span class="json-str">"Center"</span>
+        },
+        <span class="json-key">"nationality"</span>: {
+            <span class="json-key">"name"</span>: <span class="json-str">"USA"</span>
+        },
+        <span class="json-key">"draft_team"</span>: {
+            <span class="json-key">"team"</span>: {
+                <span class="json-key">"name"</span>: <span class="json-str">"New York Rangers"</span>
+            }
+        },
+        <span class="json-key">"previous_teams"</span>: [
+            {
+                <span class="json-key">"team"</span>: {
+                    <span class="json-key">"name"</span>: <span class="json-str">"New York Rangers"</span>
+                }
+            },
+            {
+                <span class="json-key">"team"</span>: {
+                    <span class="json-key">"name"</span>: <span class="json-str">"Tampa Bay Lightning"</span>
+                }
+            }
+        ]
+    },
+    <span class="json-key">"message"</span>: <span class="json-str">"Player successfully retrieved"</span>
+}</code></pre>
+                    </ul>
+                </li>
+                <li>
+                    <p class="bold">Error Response:</p>
+                    <ul>
+                        <li><p><span class="bold">Code:</span> 404 NOT FOUND</p></li>
+                        <p class="bold">Content:</p>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player with jersey number 9 not found" }</span></code></pre>
+                    </ul>
+                    <p>OR</p>
+                    <ul>
+                        <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
+                        <p class="bold">Content:</p>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred" }</span></code></pre>
+                    </ul>
+                </li>
+                <li>
+                    <p class="bold">Sample Call:</p>
+                    <ul>
+                        <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
+                        <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class="js-argument">'/api/players/9'</span>, {
+        <span class="js-property-key">method</span>: <span class="js-property-value">'GET'</span>,
+        <span class="js-property-key">headers</span>: {
+            <span class="js-property-value">'Accept'</span>: <span class="js-property-value">'application/json'</span>
+        },
+        <span class="js-property-key">mode</span>: <span class="js-property-value">'cors'</span>
+    })
+        .<span class="js-method">then</span>(response <span class="js-arrow">=></span> response.<span class="js-method">json</span>())
+        .<span class="js-method">then</span>(data <span class="js-arrow">=></span> console.<span class="js-method">log</span>(data));</code></pre>
+                    </ul>
+                </li>
+            </ul>
+        </section>
     </div>
 </body>
 
