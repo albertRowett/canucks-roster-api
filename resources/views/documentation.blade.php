@@ -19,6 +19,7 @@
         <h2>API Documentation</h2>
         <section> <!-- Return all players -->
             <h3>Return all players - optionally filtered</h3>
+            <p>Returns JSON data about all players, subject to optional filtering. If no filters are applied, all active players will be returned.</p>
             <ul>
                 <li>
                     <p class="bold">URL:</p>
@@ -30,16 +31,45 @@
                 </li>
                 <li>
                     <p class="bold">URL Params:</p>
-                    <p class="bold">Required:</p>
-                    <p>There are no required URL params</p>
-                    <p class="bold">Optional:</p>
-                    <ul>
-                        <li><code class="code">removed=0|1</code> - 1 to return only players removed from roster (if unspecified, only active players returned, i.e. <code class="code">removed=0</code>)</li>
-                        <li class="subsequent-bullet"><code class="code">position=string</code> - Filter results by position name</li>
-                        <li class="subsequent-bullet"><code class="code">nationality=string</code> - Filter results by nationality name</li>
-                    </ul>
+                    <table>
+                        <tr>
+                            <th>Parameter Name</th>
+                            <th>Type</th>
+                            <th>Required?</th>
+                            <th>Description</th>
+                            <th>Values</th>
+                        </tr>
+                        <tr>
+                            <td class="center"><code class="code">removed</code></td>
+                            <td class="center">boolean</td>
+                            <td class="center">Optional</td>
+                            <td>Enables retrieval of players removed from the roster</td>
+                            <td>
+                                <code class="code">0</code> (default): Returns only active players<br>
+                                <code class="code">1</code>: Returns only removed players
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="center"><code class="code">position</code></td>
+                            <td class="center">string</td>
+                            <td class="center">Optional</td>
+                            <td>Filters players by position name</td>
+                            <td>Must be one of <code class="code">Goaltender</code>, <code class="code">Defense</code>, <code class="code">Center</code>, <code class="code">Left wing</code> or <code class="code">Right wing</td>
+                        </tr>
+                        <tr>
+                            <td class="center"><code class="code">nationality</code></td>
+                            <td class="center">string</td>
+                            <td class="center">Optional</td>
+                            <td>Filters players by nationality name</td>
+                            <td>Must be a saved nationality - see <span class="italic">Return all nationalities</span> to access this list</td>
+                        </tr>
+                    </table>
                     <p class="bold">Example:</p>
                     <p><code class="code">/api/players?removed=1&position=Center&nationality=USA</code></p>
+                </li>
+                <li>
+                    <p class="bold">Body Data Params:</p>
+                    <p>None</p>
                 </li>
                 <li>
                     <p class="bold">Success Response:</p>

@@ -74,6 +74,10 @@ th {
     font-style: italic;
 }
 
+.center {
+    text-align: center;
+}
+
 .code {
     background-color: var(--code-bg-color);
     padding: 0.17rem 0.34rem;
