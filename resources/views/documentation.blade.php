@@ -300,64 +300,64 @@
                         <tr>
                             <th>Parameter Name</th>
                             <th>Data Type</th>
-                            <th>Description</th>
                             <th>Required?</th>
+                            <th>Description</th>
                             <th>Constraints</th>
-                            <th>Example</th>
+                            <th>Example Value</th>
                         </tr>
                         <tr>
-                            <td><code class="code">name</code></td>
-                            <td><code class="code">string</code></td>
+                            <td class="center"><code class="code">name</code></td>
+                            <td class="center">string</td>
+                            <td class="center">Required</td>
                             <td>The player's name</td>
-                            <td>Required</td>
                             <td>Max length: 255</td>
                             <td><code class="code">'J. T. Miller'</code></td>
                         </tr>
                         <tr>
-                            <td><code class="code">jerseyNumber</code></td>
-                            <td><code class="code">integer</code></td>
+                            <td class="center"><code class="code">jerseyNumber</code></td>
+                            <td class="center">integer</td>
+                            <td class="center">Required</td>
                             <td>The player's jersey number</td>
-                            <td>Required</td>
-                            <td>Between 1 and 99; must not already be assigned</td>
+                            <td>Between 1 and 99 (inclusive); must not already be assigned</td>
                             <td><code class="code">9</code></td>
                         </tr>
                         <tr>
-                            <td><code class="code">dateOfBirth</code></td>
-                            <td><code class="code">string</code></td>
+                            <td class="center"><code class="code">dateOfBirth</code></td>
+                            <td class="center">string</td>
+                            <td class="center">Required</td>
                             <td>The player's date of birth</td>
-                            <td>Required</td>
                             <td>Date format: yyyy-mm-dd</td>
                             <td><code class="code">'1993-03-14'</code></td>
                         </tr>
                         <tr>
-                            <td><code class="code">position</code></td>
-                            <td><code class="code">string</code></td>
+                            <td class="center"><code class="code">position</code></td>
+                            <td class="center">string</td>
+                            <td class="center">Required</td>
                             <td>The player's primary position</td>
-                            <td>Required</td>
                             <td>Must be one of <code class="code">'Goaltender'</code>, <code class="code">'Defense'</code>, <code class="code">'Center'</code>, <code class="code">'Left wing'</code> or <code class="code">'Right wing'</code></td>
                             <td><code class="code">'Center'</code></td>
                         </tr>
                         <tr>
-                            <td><code class="code">nationality</code></td>
-                            <td><code class="code">string</code></td>
+                            <td class="center"><code class="code">nationality</code></td>
+                            <td class="center">string</td>
+                            <td class="center">Required</td>
                             <td>The name of the nation the player represents</td>
-                            <td>Required</td>
                             <td>Max length: 255</td>
                             <td><code class="code">'USA'</code></td>
                         </tr>
                         <tr>
-                            <td><code class="code">draftTeam</code></td>
-                            <td><code class="code">string</code></td>
+                            <td class="center"><code class="code">draftTeam</code></td>
+                            <td class="center">string</td>
+                            <td class="center">Optional</td>
                             <td>The name of the player's draft team (omit or set to <code class="code">null</code> if undrafted)</td>
-                            <td>Optional</td>
                             <td>Max length: 255</td>
                             <td><code class="code">'New York Rangers'</code></td>
                         </tr>
                         <tr>
-                            <td><code class="code">previousTeams</code></td>
-                            <td><code class="code">array</code></td>
+                            <td class="center"><code class="code">previousTeams</code></td>
+                            <td class="center">array</td>
+                            <td class="center">Optional</td>
                             <td>The names of the teams the player has previously played for</td>
-                            <td>Optional</td>
                             <td>Team names must be of type <code class="code">string</code> with max length: 255 and no repeats</td>
                             <td><code class="code">['New York Rangers', 'Tampa Bay Lightning']</code></td>
                         </tr>
