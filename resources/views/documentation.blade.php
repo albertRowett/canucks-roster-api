@@ -30,6 +30,12 @@
                     <p><code class="code">GET</code></p>
                 </li>
                 <li>
+                    <p class="bold">Headers:</p>
+                    <ul>
+                        <li><p><span class="bold">Accept:</span> application/json</p></li>
+                    </ul>
+                </li>
+                <li>
                     <p class="bold">URL Params:</p>
                     <table>
                         <tr>
@@ -161,6 +167,12 @@
                 <li>
                     <p class="bold">Method:</p>
                     <p><code class="code">GET</code></p>
+                </li>
+                <li>
+                    <p class="bold">Headers:</p>
+                    <ul>
+                        <li><p><span class="bold">Accept:</span> application/json</p></li>
+                    </ul>
                 </li>
                 <li>
                     <p class="bold">URL Params:</p>
