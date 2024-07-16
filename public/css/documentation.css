@@ -51,8 +51,27 @@ p {
     margin: 1rem 0;
 }
 
+table, th, td {
+    border: 1px solid var(--border-color);
+    border-collapse: collapse;
+    font-size: 95%;
+}
+
+th, td {
+    padding: 0.125rem 0.25rem;
+}
+
+th {
+    background-color: var(--code-bg-color);
+    text-align: center;
+}
+
 .bold {
     font-weight: 600;
+}
+
+.italic {
+    font-style: italic;
 }
 
 .code {
@@ -66,11 +85,11 @@ p {
     padding: 1rem;
 }
 
-.json-key, .json-int, .json-null, .js-property-key, .js-arrow {
+.json-key, .json-int, .json-null, .js-object, .js-arrow {
     color: var(--code-blue-color);
 }
 
-.json-str, .js-argument, .js-property-value {
+.json-str, .js-argument, .js-object-str {
     color: var(--code-dark-blue-color);
 }
 
