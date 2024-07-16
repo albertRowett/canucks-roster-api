@@ -152,11 +152,11 @@
         </section>
         <section> <!-- Return a specific player -->
             <h3>Return a specific player</h3>
-            <p>Returns JSON data about a specific player. Also returns data for players removed from the roster, but not deleted.</p>
+            <p>Returns JSON data about a specific player. Also returns data for players removed from the roster.</p>
             <ul>
                 <li>
                     <p class="bold">URL:</p>
-                    <p>/api/players/{jersey_number}</p>
+                    <p>/api/players/{jerseyNumber}</p>
                 </li>
                 <li>
                     <p class="bold">Method:</p>
@@ -164,12 +164,28 @@
                 </li>
                 <li>
                     <p class="bold">URL Params:</p>
-                    <p class="bold">Required:</p>
-                    <p>There are no required URL params</p>
-                    <p class="bold">Optional:</p>
-                    <p>There are no optional URL params</p>
+                    <table>
+                        <tr>
+                            <th>Parameter Name</th>
+                            <th>Type</th>
+                            <th>Required?</th>
+                            <th>Description</th>
+                            <th>Values</th>
+                        </tr>
+                        <tr>
+                            <td class="center"><code class="code">jerseyNumber</code></td>
+                            <td class="center">integer</td>
+                            <td class="center">Required</td>
+                            <td>The jersey number of the player to return</td>
+                            <td>1 to 99 (inclusive) </td>
+                        </tr>
+                    </table>
                     <p class="bold">Example:</p>
                     <p><code class="code">/api/players/9</code></p>
+                </li>
+                <li>
+                    <p class="bold">Body Data Params:</p>
+                    <p>None</p>
                 </li>
                 <li>
                     <p class="bold">Success Response:</p>
