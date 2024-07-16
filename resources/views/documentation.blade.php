@@ -349,7 +349,7 @@
                             <td class="center"><code class="code">draftTeam</code></td>
                             <td class="center">string</td>
                             <td class="center">Optional</td>
-                            <td>The name of the player's draft team (omit or set to <code class="code">null</code> if undrafted)</td>
+                            <td>The name of the player's draft team (omit or set as <code class="code">null</code> if undrafted)</td>
                             <td>Max length: 255</td>
                             <td><code class="code">'New York Rangers'</code></td>
                         </tr>
@@ -357,7 +357,7 @@
                             <td class="center"><code class="code">previousTeams</code></td>
                             <td class="center">array</td>
                             <td class="center">Optional</td>
-                            <td>The names of the teams the player has previously played for</td>
+                            <td>The names of the teams the player has previously played for (omit or set as <code class="code">null</code> if none)</td>
                             <td>Team names must be of type <code class="code">string</code> with max length: 255 and no repeats</td>
                             <td><code class="code">['New York Rangers', 'Tampa Bay Lightning']</code></td>
                         </tr>
@@ -407,6 +407,177 @@
             <span class="js-object-str">'New York Rangers'</span>,
             <span class="js-object-str">'Tampa Bay Lightning'</span>
         ]
+    })
+})
+    .<span class="js-method">then</span>(response <span class="js-arrow">=></span> response.<span class="js-method">json</span>())
+    .<span class="js-method">then</span>(data <span class="js-arrow">=></span> console.<span class="js-method">log</span>(data));</code></pre>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <section> <!-- Update a player -->
+            <h3>Update a player</h3>
+            <p>Updates an existing player's data.</p>
+            <ul>
+                <li>
+                    <p class="bold">URL:</p>
+                    <p>/api/players/{jerseyNumber}</p>
+                </li>
+                <li>
+                    <p class="bold">Method:</p>
+                    <p><code class="code">PUT</code></p>
+                </li>
+                <li>
+                    <p class="bold">Headers:</p>
+                    <ul>
+                        <li><p><span class="bold">Content-Type:</span> application/json</p></li>
+                        <li><p><span class="bold">Accept:</span> application/json</p></li>
+                    </ul>
+                </li>
+                <li>
+                    <p class="bold">URL Params:</p>
+                    <table>
+                        <tr>
+                            <th>Parameter Name</th>
+                            <th>Type</th>
+                            <th>Required?</th>
+                            <th>Description</th>
+                            <th>Values</th>
+                        </tr>
+                        <tr>
+                            <td class="center"><code class="code">jerseyNumber</code></td>
+                            <td class="center">integer</td>
+                            <td class="center">Required</td>
+                            <td>The jersey number of the player to update</td>
+                            <td>1 to 99 (inclusive) </td>
+                        </tr>
+                    </table>
+                    <p class="bold">Example:</p>
+                    <p><code class="code">/api/players/9</code></p>
+                </li>
+                <li>
+                    <p class="bold">Body Data Params:</p>
+                    <p class="italic">All parameters must be sent as JSON with the correct headers.</p>
+                    <table>
+                        <tr>
+                            <th>Parameter Name</th>
+                            <th>Data Type</th>
+                            <th>Required?</th>
+                            <th>Description</th>
+                            <th>Constraints</th>
+                            <th>Example Value</th>
+                        </tr>
+                        <tr>
+                            <td class="center"><code class="code">name</code></td>
+                            <td class="center">string</td>
+                            <td class="center">Optional</td>
+                            <td>The player's updated name</td>
+                            <td>Max length: 255</td>
+                            <td><code class="code">'J. T. Miller'</code></td>
+                        </tr>
+                        <tr>
+                            <td class="center"><code class="code">jerseyNumber</code></td>
+                            <td class="center">integer</td>
+                            <td class="center">Optional</td>
+                            <td>The player's updated jersey number</td>
+                            <td>Between 1 and 99 (inclusive); must not already be assigned</td>
+                            <td><code class="code">9</code></td>
+                        </tr>
+                        <tr>
+                            <td class="center"><code class="code">dateOfBirth</code></td>
+                            <td class="center">string</td>
+                            <td class="center">Optional</td>
+                            <td>The player's updated date of birth</td>
+                            <td>Date format: yyyy-mm-dd</td>
+                            <td><code class="code">'1993-03-14'</code></td>
+                        </tr>
+                        <tr>
+                            <td class="center"><code class="code">position</code></td>
+                            <td class="center">string</td>
+                            <td class="center">Optional</td>
+                            <td>The player's updated primary position</td>
+                            <td>Must be one of <code class="code">'Goaltender'</code>, <code class="code">'Defense'</code>, <code class="code">'Center'</code>, <code class="code">'Left wing'</code> or <code class="code">'Right wing'</code></td>
+                            <td><code class="code">'Center'</code></td>
+                        </tr>
+                        <tr>
+                            <td class="center"><code class="code">nationality</code></td>
+                            <td class="center">string</td>
+                            <td class="center">Optional</td>
+                            <td>The updated name of the nation the player represents</td>
+                            <td>Max length: 255</td>
+                            <td><code class="code">'USA'</code></td>
+                        </tr>
+                        <tr>
+                            <td class="center"><code class="code">draftTeam</code></td>
+                            <td class="center">string</td>
+                            <td class="center">Optional</td>
+                            <td>The updated name of the player's draft team (set as <code class="code">null</code> to update to undrafted)</td>
+                            <td>Max length: 255</td>
+                            <td><code class="code">'New York Rangers'</code></td>
+                        </tr>
+                        <tr>
+                            <td class="center"><code class="code">previousTeams</code></td>
+                            <td class="center">array</td>
+                            <td class="center">Optional</td>
+                            <td>The updated names of the teams the player has previously played for (set as <code class="code">null</code> to update to none)</td>
+                            <td>Team names must be of type <code class="code">string</code> with max length: 255 and no repeats</td>
+                            <td><code class="code">['New York Rangers', 'Tampa Bay Lightning']</code></td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <p class="bold">Success Response:</p>
+                    <ul>
+                        <li><p><span class="bold">Code:</span> 200 OK</p></li>
+                        <p class="bold">Content:</p>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player updated"</span> }</code></pre>
+                    </ul>
+                </li>
+                <li>
+                    <p class="bold">Error Response:</p>
+                    <ul>
+                        <li><p><span class="bold">Code:</span> 404 NOT FOUND</p></li>
+                        <p class="bold">Content:</p>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player with jersey number 9 not found"</span> }</code></pre>
+                    </ul>
+                    <p>OR</p>
+                    <ul>
+                        <li><p><span class="bold">Code:</span> 422 UNPROCESSABLE CONTENT</p></li>
+                        <p class="bold">Content:</p>
+                        <pre class="code codeblock"><code>{
+    <span class="json-key">"message"</span>: <span class="json-str">"The name field must be a string. (and 6 more errors)"</span>,
+    <span class="json-key">"errors"</span>: {
+        <span class="json-key">"name"</span>: [<span class="json-str">"The name field must be a string."</span>],
+        <span class="json-key">"jerseyNumber"</span>: [<span class="json-str">"The jersey number field must be between 1 and 99."</span>],
+        <span class="json-key">"dateOfBirth"</span>: [<span class="json-str">"The date of birth field must match the format Y-m-d."</span>],
+        <span class="json-key">"position"</span>: [<span class="json-str">"The selected position is invalid."</span>],
+        <span class="json-key">"nationality"</span>: [<span class="json-str">"The nationality field must be a string."</span>],
+        <span class="json-key">"draftTeam"</span>: [<span class="json-str">"The draft team field must be a string."</span>],
+        <span class="json-key">"previousTeams"</span>: [<span class="json-str">"The previous teams field must be an array."</span>]
+    }
+}</code></pre>
+                    </ul>
+                    <p>OR</p>
+                    <ul>
+                        <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
+                        <p class="bold">Content:</p>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
+                    </ul>
+                </li>
+                <li>
+                    <p class="bold">Sample Call:</p>
+                    <ul>
+                        <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
+                        <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class=js-argument>'/api/players/9'</span>, {
+    <span class="js-object">method</span>: <span class="js-object-str">'PUT'</span>,
+    <span class="js-object">headers</span>: {
+        <span class="js-object-str">'Content-Type'</span>: <span class="js-object-str">'application/json'</span>,
+        <span class="js-object-str">'Accept'</span>: <span class="js-object-str">'application/json'</span>
+    },
+    <span class="js-object">mode</span>: <span class="js-object-str">'cors'</span>,
+    <span class="js-object">body</span>: <span class="js-object">JSON</span>.<span class="js-method">stringify</span>({
+        <span class="js-object-str">'jerseyNumber'</span>: <span class="js-object">11</span>,
+        <span class="js-object-str">'position'</span>: <span class="js-object-str">'Left wing'</span>
     })
 })
     .<span class="js-method">then</span>(response <span class="js-arrow">=></span> response.<span class="js-method">json</span>())
