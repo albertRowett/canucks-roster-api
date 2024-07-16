@@ -376,7 +376,18 @@
                     <ul>
                         <li><p><span class="bold">Code:</span> 422 UNPROCESSABLE CONTENT</p></li>
                         <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player with jersey number 9 not found"</span> }</code></pre>
+                        <pre class="code codeblock"><code>{
+    <span class="json-key">"message"</span>: <span class="json-str">"The name field must be a string. (and 6 more errors)"</span>,
+    <span class="json-key">"errors"</span>: {
+        <span class="json-key">"name"</span>: [<span class="json-str">"The name field must be a string."</span>],
+        <span class="json-key">"jerseyNumber"</span>: [<span class="json-str">"The jersey number field must be between 1 and 99."</span>],
+        <span class="json-key">"dateOfBirth"</span>: [<span class="json-str">"The date of birth field must match the format Y-m-d."</span>],
+        <span class="json-key">"position"</span>: [<span class="json-str">"The selected position is invalid."</span>],
+        <span class="json-key">"nationality"</span>: [<span class="json-str">"The nationality field must be a string."</span>],
+        <span class="json-key">"draftTeam"</span>: [<span class="json-str">"The draft team field must be a string."</span>],
+        <span class="json-key">"previousTeams"</span>: [<span class="json-str">"The previous teams field must be an array."</span>]
+    }
+}</code></pre>
                     </ul>
                     <p>OR</p>
                     <ul>
