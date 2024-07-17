@@ -189,7 +189,7 @@
                             <td class="center">integer</td>
                             <td class="center">Required</td>
                             <td>The jersey number of the player to return</td>
-                            <td>1 to 99 (inclusive) </td>
+                            <td>1 to 99 (inclusive)</td>
                         </tr>
                     </table>
                     <p class="bold">Example:</p>
@@ -460,7 +460,7 @@
                             <td class="center">integer</td>
                             <td class="center">Required</td>
                             <td>The jersey number of the player to update</td>
-                            <td>1 to 99 (inclusive) </td>
+                            <td>1 to 99 (inclusive)</td>
                         </tr>
                     </table>
                     <p class="bold">Example:</p>
@@ -631,7 +631,7 @@
                             <td class="center">integer</td>
                             <td class="center">Required</td>
                             <td>The jersey number of the player to remove/restore</td>
-                            <td>1 to 99 (inclusive) </td>
+                            <td>1 to 99 (inclusive)</td>
                         </tr>
                     </table>
                     <p class="bold">Example:</p>
@@ -719,6 +719,88 @@
 })
     .<span class="js-method">then</span>(response <span class="js-arrow">=></span> response.<span class="js-method">json</span>())
     .<span class="js-method">then</span>(data <span class="js-arrow">=></span> console.<span class="js-method">log</span>(data));</code></pre>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <section> <!-- Delete a player -->
+            <h3>Delete a player</h3>
+            <p>Permanently deletes a player's data.</p>
+            <ul>
+                <li>
+                    <p class="bold">URL:</p>
+                    <p>/api/players/{jerseyNumber}</p>
+                </li>
+                <li>
+                    <p class="bold">Method:</p>
+                    <p><code class="code">DELETE</code></p>
+                </li>
+                <li>
+                    <p class="bold">Headers:</p>
+                    <ul>
+                        <li><p><span class="bold">Accept:</span> application/json</p></li>
+                    </ul>
+                </li>
+                <li>
+                    <p class="bold">URL Params:</p>
+                    <table>
+                        <tr>
+                            <th>Parameter Name</th>
+                            <th>Type</th>
+                            <th>Required?</th>
+                            <th>Description</th>
+                            <th>Values</th>
+                        </tr>
+                        <tr>
+                            <td class="center"><code class="code">jerseyNumber</code></td>
+                            <td class="center">integer</td>
+                            <td class="center">Required</td>
+                            <td>The jersey number of the player to delete</td>
+                            <td>1 to 99 (inclusive)</td>
+                        </tr>
+                    </table>
+                    <p class="bold">Example:</p>
+                    <p><code class="code">/api/players/9</code></p>
+                </li>
+                <li>
+                    <p class="bold">Body Data Params:</p>
+                    <p>None</p>
+                </li>
+                <li>
+                    <p class="bold">Success Response:</p>
+                    <ul>
+                        <li><p><span class="bold">Code:</span> 200 OK</p></li>
+                        <p class="bold">Content:</p>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player deleted"</span> }</code></pre>
+                    </ul>
+                </li>
+                <li>
+                    <p class="bold">Error Response:</p>
+                    <ul>
+                        <li><p><span class="bold">Code:</span> 404 NOT FOUND</p></li>
+                        <p class="bold">Content:</p>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player with jersey number 9 not found" }</span></code></pre>
+                    </ul>
+                    <p>OR</p>
+                    <ul>
+                        <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
+                        <p class="bold">Content:</p>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred" }</span></code></pre>
+                    </ul>
+                </li>
+                <li>
+                    <p class="bold">Sample Call:</p>
+                    <ul>
+                        <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
+                        <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class="js-argument">'/api/players/9'</span>, {
+        <span class="js-object">method</span>: <span class="js-object-str">'DELETE'</span>,
+        <span class="js-object">headers</span>: {
+            <span class="js-object-str">'Accept'</span>: <span class="js-object-str">'application/json'</span>
+        },
+        <span class="js-object">mode</span>: <span class="js-object-str">'cors'</span>
+    })
+        .<span class="js-method">then</span>(response <span class="js-arrow">=></span> response.<span class="js-method">json</span>())
+        .<span class="js-method">then</span>(data <span class="js-arrow">=></span> console.<span class="js-method">log</span>(data));</code></pre>
                     </ul>
                 </li>
             </ul>
