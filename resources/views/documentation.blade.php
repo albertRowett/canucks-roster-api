@@ -873,6 +873,72 @@
                 </li>
             </ul>
         </section>
+        <section> <!-- Return all nationalities -->
+            <h3>Return all nationalities</h3>
+            <p>Returns the names of all nationalities, as JSON data.</p>
+            <ul>
+                <li>
+                    <p class="bold">URL:</p>
+                    <p>/api/nationalities</p>
+                </li>
+                <li>
+                    <p class="bold">Method:</p>
+                    <p><code class="code">GET</code></p>
+                </li>
+                <li>
+                    <p class="bold">Headers:</p>
+                    <ul>
+                        <li><p><span class="bold">Accept:</span> application/json</p></li>
+                    </ul>
+                </li>
+                <li>
+                    <p class="bold">URL Params:</p>
+                    <p>None</p>
+                </li>
+                <li>
+                    <p class="bold">Body Data Params:</p>
+                    <p>None</p>
+                </li>
+                <li>
+                    <p class="bold">Success Response:</p>
+                    <ul>
+                        <li><p><span class="bold">Code:</span> 200 OK</p></li>
+                        <p class="bold">Content:</p>
+                        <pre class="code codeblock"><code>{
+    <span class="json-key">"data"</span>: [
+        { <span class="json-key">"name"</span>: <span class="json-str">"USA"</span> },
+        { <span class="json-key">"name"</span>: <span class="json-str">"Canada"</span> },
+        { <span class="json-key">"name"</span>: <span class="json-str">"Sweden"</span> }
+    ],
+    <span class="json-key">"message"</span>: <span class="json-str">"Nationalities successfully retrieved"</span>
+}</code></pre>
+                    </ul>
+                </li>
+                <li>
+                    <p class="bold">Error Response:</p>
+                    <ul>
+                        <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
+                        <p class="bold">Content:</p>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred" }</span></code></pre>
+                    </ul>
+                </li>
+                <li>
+                    <p class="bold">Sample Call:</p>
+                    <ul>
+                        <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
+                        <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class="js-argument">'/api/nationalities'</span>, {
+        <span class="js-object">method</span>: <span class="js-object-str">'GET'</span>,
+        <span class="js-object">headers</span>: {
+            <span class="js-object-str">'Accept'</span>: <span class="js-object-str">'application/json'</span>
+        },
+        <span class="js-object">mode</span>: <span class="js-object-str">'cors'</span>
+    })
+        .<span class="js-method">then</span>(response <span class="js-arrow">=></span> response.<span class="js-method">json</span>())
+        .<span class="js-method">then</span>(data <span class="js-arrow">=></span> console.<span class="js-method">log</span>(data));</code></pre>
+                    </ul>
+                </li>
+            </ul>
+        </section>
     </div>
 </body>
 
