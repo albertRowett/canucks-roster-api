@@ -597,6 +597,132 @@
                 </li>
             </ul>
         </section>
+        <section> <!-- Remove/restore a player -->
+            <h3>Remove/restore a player</h3>
+            <p>Updates an existing player's roster status. Players removed from the roster are not permanently deleted and can subsequently be restored to the roster.</p>
+            <ul>
+                <li>
+                    <p class="bold">URL:</p>
+                    <p>/api/players/{jerseyNumber}</p>
+                </li>
+                <li>
+                    <p class="bold">Method:</p>
+                    <p><code class="code">PATCH</code></p>
+                </li>
+                <li>
+                    <p class="bold">Headers:</p>
+                    <ul>
+                        <li><p><span class="bold">Content-Type:</span> application/json</p></li>
+                        <li><p><span class="bold">Accept:</span> application/json</p></li>
+                    </ul>
+                </li>
+                <li>
+                    <p class="bold">URL Params:</p>
+                    <table>
+                        <tr>
+                            <th>Parameter Name</th>
+                            <th>Type</th>
+                            <th>Required?</th>
+                            <th>Description</th>
+                            <th>Values</th>
+                        </tr>
+                        <tr>
+                            <td class="center"><code class="code">jerseyNumber</code></td>
+                            <td class="center">integer</td>
+                            <td class="center">Required</td>
+                            <td>The jersey number of the player to remove/restore</td>
+                            <td>1 to 99 (inclusive) </td>
+                        </tr>
+                    </table>
+                    <p class="bold">Example:</p>
+                    <p><code class="code">/api/players/9</code></p>
+                </li>
+                <li>
+                    <p class="bold">Body Data Params:</p>
+                    <p class="italic">All parameters must be sent as JSON with the correct headers.</p>
+                    <table>
+                        <tr>
+                            <th>Parameter Name</th>
+                            <th>Data Type</th>
+                            <th>Required?</th>
+                            <th>Description</th>
+                            <th>Constraints</th>
+                            <th>Example Value</th>
+                        </tr>
+                        <tr>
+                            <td class="center"><code class="code">action</code></td>
+                            <td class="center">string</td>
+                            <td class="center">Required</td>
+                            <td>The action to effect on the player's roster status</td>
+                            <td>Must be either <code class="code">'remove'</code> or <code class="code">'restore'</code></td>
+                            <td><code class="code">'remove'</code></td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <p class="bold">Success Response:</p>
+                    <ul>
+                        <li><p><span class="bold">Code:</span> 200 OK</p></li>
+                        <p class="bold">Content:</p>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player removed from roster"</span> }</code></pre>
+                        <p>OR</p>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player restored to roster"</span> }</code></pre>
+                    </ul>
+                </li>
+                <li>
+                    <p class="bold">Error Response:</p>
+                    <ul>
+                        <li><p><span class="bold">Code:</span> 400 BAD REQUEST</p></li>
+                        <p class="bold">Content:</p>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player already removed from roster"</span> }</code></pre>
+                        <p>OR</p>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player already on roster"</span> }</code></pre>
+                    </ul>
+                    <p>OR</p>
+                    <ul>
+                        <li><p><span class="bold">Code:</span> 404 NOT FOUND</p></li>
+                        <p class="bold">Content:</p>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player with jersey number 9 not found"</span> }</code></pre>
+                    </ul>
+                    <p>OR</p>
+                    <ul>
+                        <li><p><span class="bold">Code:</span> 422 UNPROCESSABLE CONTENT</p></li>
+                        <p class="bold">Content:</p>
+                        <pre class="code codeblock"><code>{
+    <span class="json-key">"message"</span>: <span class="json-str">"The selected action is invalid."</span>,
+    <span class="json-key">"errors"</span>: {
+        <span class="json-key">"action"</span>: [<span class="json-str">"The selected action is invalid."</span>]
+    }
+}</code></pre>
+                    </ul>
+                    <p>OR</p>
+                    <ul>
+                        <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
+                        <p class="bold">Content:</p>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
+                    </ul>
+                </li>
+                <li>
+                    <p class="bold">Sample Call:</p>
+                    <ul>
+                        <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
+                        <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class=js-argument>'/api/players/9'</span>, {
+    <span class="js-object">method</span>: <span class="js-object-str">'PATCH'</span>,
+    <span class="js-object">headers</span>: {
+        <span class="js-object-str">'Content-Type'</span>: <span class="js-object-str">'application/json'</span>,
+        <span class="js-object-str">'Accept'</span>: <span class="js-object-str">'application/json'</span>
+    },
+    <span class="js-object">mode</span>: <span class="js-object-str">'cors'</span>,
+    <span class="js-object">body</span>: <span class="js-object">JSON</span>.<span class="js-method">stringify</span>({
+        <span class="js-object-str">'action'</span>: <span class="js-object-str">'remove'</span>
+    })
+})
+    .<span class="js-method">then</span>(response <span class="js-arrow">=></span> response.<span class="js-method">json</span>())
+    .<span class="js-method">then</span>(data <span class="js-arrow">=></span> console.<span class="js-method">log</span>(data));</code></pre>
+                    </ul>
+                </li>
+            </ul>
+        </section>
     </div>
 </body>
 
