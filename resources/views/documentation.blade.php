@@ -19,7 +19,7 @@
         <h2>API Documentation</h2>
         <section> <!-- Return all players -->
             <h3>Return all players - optionally filtered</h3>
-            <p>Returns JSON data about all players, subject to optional filtering. If no filters are applied, all active players will be returned.</p>
+            <p>Returns JSON data about all players, subject to optional filtering. If no filters are applied, all players on the roster will be returned.</p>
             <ul>
                 <li>
                     <p class="bold">URL:</p>
@@ -51,8 +51,8 @@
                             <td class="center">Optional</td>
                             <td>Enables retrieval of players removed from the roster</td>
                             <td>
-                                <code class="code">0</code> (default): Returns only active players<br>
-                                <code class="code">1</code>: Returns only removed players
+                                <code class="code">0</code> (default): Returns only players on the roster<br>
+                                <code class="code">1</code>: Returns only players removed from the roster
                             </td>
                         </tr>
                         <tr>
@@ -136,7 +136,7 @@
                     <ul>
                         <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
                         <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred" }</span></code></pre>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
                     </ul>
                 </li>
                 <li>
@@ -146,7 +146,7 @@
                         <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class="js-argument">'/api/players?removed=1&position=Center&nationality=USA'</span>, {
         <span class="js-object">method</span>: <span class="js-object-str">'GET'</span>,
         <span class="js-object">headers</span>: {
-            <span class="js-object-str">'Accept'</span>: <span class="js-object-str">'application/json'</span>
+            <span class="js-object">Accept</span>: <span class="js-object-str">'application/json'</span>
         },
         <span class="js-object">mode</span>: <span class="js-object-str">'cors'</span>
     })
@@ -158,7 +158,7 @@
         </section>
         <section> <!-- Return a specific player -->
             <h3>Return a specific player</h3>
-            <p>Returns JSON data about a specific player. Also returns data for players removed from the roster.</p>
+            <p>Returns JSON data about a specific player, including for players removed from the roster.</p>
             <ul>
                 <li>
                     <p class="bold">URL:</p>
@@ -244,13 +244,13 @@
                     <ul>
                         <li><p><span class="bold">Code:</span> 404 NOT FOUND</p></li>
                         <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player with jersey number 9 not found" }</span></code></pre>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player with jersey number 9 not found"</span> }</code></pre>
                     </ul>
                     <p>OR</p>
                     <ul>
                         <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
                         <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred" }</span></code></pre>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
                     </ul>
                 </li>
                 <li>
@@ -260,7 +260,7 @@
                         <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class="js-argument">'/api/players/9'</span>, {
         <span class="js-object">method</span>: <span class="js-object-str">'GET'</span>,
         <span class="js-object">headers</span>: {
-            <span class="js-object-str">'Accept'</span>: <span class="js-object-str">'application/json'</span>
+            <span class="js-object">Accept</span>: <span class="js-object-str">'application/json'</span>
         },
         <span class="js-object">mode</span>: <span class="js-object-str">'cors'</span>
     })
@@ -349,7 +349,7 @@
                             <td class="center"><code class="code">draftTeam</code></td>
                             <td class="center">string</td>
                             <td class="center">Optional</td>
-                            <td>The name of the player's draft team (omit or set as <code class="code">null</code> if undrafted)</td>
+                            <td>The name of the player's draft team (omit or set as <code class="code">null</code> if the player is undrafted)</td>
                             <td>Max length: 255</td>
                             <td><code class="code">'New York Rangers'</code></td>
                         </tr>
@@ -357,7 +357,7 @@
                             <td class="center"><code class="code">previousTeams</code></td>
                             <td class="center">array</td>
                             <td class="center">Optional</td>
-                            <td>The names of the teams the player has previously played for (omit or set as <code class="code">null</code> if none)</td>
+                            <td>The names of the teams the player has previously played for (omit or set as <code class="code">null</code> if the player has none)</td>
                             <td>Team names must be of type <code class="code">string</code> with max length: 255 and no repeats</td>
                             <td><code class="code">['New York Rangers', 'Tampa Bay Lightning']</code></td>
                         </tr>
@@ -404,17 +404,17 @@
     <span class="js-object">method</span>: <span class="js-object-str">'POST'</span>,
     <span class="js-object">headers</span>: {
         <span class="js-object-str">'Content-Type'</span>: <span class="js-object-str">'application/json'</span>,
-        <span class="js-object-str">'Accept'</span>: <span class="js-object-str">'application/json'</span>
+        <span class="js-object">Accept</span>: <span class="js-object-str">'application/json'</span>
     },
     <span class="js-object">mode</span>: <span class="js-object-str">'cors'</span>,
     <span class="js-object">body</span>: <span class="js-object">JSON</span>.<span class="js-method">stringify</span>({
-        <span class="js-object-str">'name'</span>: <span class="js-object-str">'J. T. Miller'</span>,
-        <span class="js-object-str">'jerseyNumber'</span>: <span class="js-object">9</span>,
-        <span class="js-object-str">'dateOfBirth'</span>: <span class="js-object-str">'1993-03-14'</span>,
-        <span class="js-object-str">'position'</span>: <span class="js-object-str">'Center'</span>,
-        <span class="js-object-str">'nationality'</span>: <span class="js-object-str">'USA'</span>,
-        <span class="js-object-str">'draftTeam'</span>: <span class="js-object-str">'New York Rangers'</span>,
-        <span class="js-object-str">'previousTeams'</span>: [
+        <span class="js-object">name</span>: <span class="js-object-str">'J. T. Miller'</span>,
+        <span class="js-object">jerseyNumber</span>: <span class="js-object">9</span>,
+        <span class="js-object">dateOfBirth</span>: <span class="js-object-str">'1993-03-14'</span>,
+        <span class="js-object">position</span>: <span class="js-object-str">'Center'</span>,
+        <span class="js-object">nationality</span>: <span class="js-object-str">'USA'</span>,
+        <span class="js-object">draftTeam</span>: <span class="js-object-str">'New York Rangers'</span>,
+        <span class="js-object">previousTeams</span>: [
             <span class="js-object-str">'New York Rangers'</span>,
             <span class="js-object-str">'Tampa Bay Lightning'</span>
         ]
@@ -583,12 +583,12 @@
     <span class="js-object">method</span>: <span class="js-object-str">'PUT'</span>,
     <span class="js-object">headers</span>: {
         <span class="js-object-str">'Content-Type'</span>: <span class="js-object-str">'application/json'</span>,
-        <span class="js-object-str">'Accept'</span>: <span class="js-object-str">'application/json'</span>
+        <span class="js-object">Accept</span>: <span class="js-object-str">'application/json'</span>
     },
     <span class="js-object">mode</span>: <span class="js-object-str">'cors'</span>,
     <span class="js-object">body</span>: <span class="js-object">JSON</span>.<span class="js-method">stringify</span>({
-        <span class="js-object-str">'jerseyNumber'</span>: <span class="js-object">11</span>,
-        <span class="js-object-str">'position'</span>: <span class="js-object-str">'Left wing'</span>
+        <span class="js-object">jerseyNumber</span>: <span class="js-object">11</span>,
+        <span class="js-object">position</span>: <span class="js-object-str">'Left wing'</span>
     })
 })
     .<span class="js-method">then</span>(response <span class="js-arrow">=></span> response.<span class="js-method">json</span>())
@@ -710,11 +710,11 @@
     <span class="js-object">method</span>: <span class="js-object-str">'PATCH'</span>,
     <span class="js-object">headers</span>: {
         <span class="js-object-str">'Content-Type'</span>: <span class="js-object-str">'application/json'</span>,
-        <span class="js-object-str">'Accept'</span>: <span class="js-object-str">'application/json'</span>
+        <span class="js-object">Accept</span>: <span class="js-object-str">'application/json'</span>
     },
     <span class="js-object">mode</span>: <span class="js-object-str">'cors'</span>,
     <span class="js-object">body</span>: <span class="js-object">JSON</span>.<span class="js-method">stringify</span>({
-        <span class="js-object-str">'action'</span>: <span class="js-object-str">'remove'</span>
+        <span class="js-object">action</span>: <span class="js-object-str">'remove'</span>
     })
 })
     .<span class="js-method">then</span>(response <span class="js-arrow">=></span> response.<span class="js-method">json</span>())
@@ -779,13 +779,13 @@
                     <ul>
                         <li><p><span class="bold">Code:</span> 404 NOT FOUND</p></li>
                         <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player with jersey number 9 not found" }</span></code></pre>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player with jersey number 9 not found"</span> }</code></pre>
                     </ul>
                     <p>OR</p>
                     <ul>
                         <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
                         <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred" }</span></code></pre>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
                     </ul>
                 </li>
                 <li>
@@ -795,7 +795,7 @@
                         <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class="js-argument">'/api/players/9'</span>, {
         <span class="js-object">method</span>: <span class="js-object-str">'DELETE'</span>,
         <span class="js-object">headers</span>: {
-            <span class="js-object-str">'Accept'</span>: <span class="js-object-str">'application/json'</span>
+            <span class="js-object">Accept</span>: <span class="js-object-str">'application/json'</span>
         },
         <span class="js-object">mode</span>: <span class="js-object-str">'cors'</span>
     })
@@ -853,7 +853,7 @@
                     <ul>
                         <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
                         <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred" }</span></code></pre>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
                     </ul>
                 </li>
                 <li>
@@ -863,7 +863,7 @@
                         <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class="js-argument">'/api/positions'</span>, {
         <span class="js-object">method</span>: <span class="js-object-str">'GET'</span>,
         <span class="js-object">headers</span>: {
-            <span class="js-object-str">'Accept'</span>: <span class="js-object-str">'application/json'</span>
+            <span class="js-object">Accept</span>: <span class="js-object-str">'application/json'</span>
         },
         <span class="js-object">mode</span>: <span class="js-object-str">'cors'</span>
     })
@@ -919,7 +919,7 @@
                     <ul>
                         <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
                         <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred" }</span></code></pre>
+                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
                     </ul>
                 </li>
                 <li>
