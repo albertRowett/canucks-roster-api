@@ -11,6 +11,8 @@
     <meta name="author" content="Albert Rowett" />
 
     <link rel="stylesheet" href="css/documentation.css" />
+
+    <script defer src="js/documentation.js"></script>
 </head>
 
 <body>
@@ -18,71 +20,72 @@
         <h1>Vancouver Canucks Roster API</h1>
         <h2>API Documentation</h2>
         <section> <!-- Return all players -->
-            <h3>Return all players - optionally filtered</h3>
-            <p>Returns JSON data about all players, subject to optional filtering. If no filters are applied, all players on the roster will be returned.</p>
-            <ul>
-                <li>
-                    <p class="bold">URL:</p>
-                    <p>/api/players</p>
-                </li>
-                <li>
-                    <p class="bold">Method:</p>
-                    <p><code class="code">GET</code></p>
-                </li>
-                <li>
-                    <p class="bold">Headers:</p>
-                    <ul>
-                        <li><p><span class="bold">Accept:</span> application/json</p></li>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">URL Params:</p>
-                    <table>
-                        <tr>
-                            <th>Parameter Name</th>
-                            <th>Type</th>
-                            <th>Required?</th>
-                            <th>Description</th>
-                            <th>Values</th>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">removed</code></td>
-                            <td class="center">boolean</td>
-                            <td class="center">Optional</td>
-                            <td>Enables retrieval of players removed from the roster</td>
-                            <td>
-                                <code class="code">0</code> (default): Returns only players on the roster<br>
-                                <code class="code">1</code>: Returns only players removed from the roster
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">position</code></td>
-                            <td class="center">string</td>
-                            <td class="center">Optional</td>
-                            <td>Filters players by position name</td>
-                            <td>Must be one of <code class="code">Goaltender</code>, <code class="code">Defense</code>, <code class="code">Center</code>, <code class="code">Left wing</code> or <code class="code">Right wing</td>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">nationality</code></td>
-                            <td class="center">string</td>
-                            <td class="center">Optional</td>
-                            <td>Filters players by nationality name</td>
-                            <td>Must be a saved nationality - see <span class="italic">Return all nationalities</span> to access this list</td>
-                        </tr>
-                    </table>
-                    <p class="bold">Example:</p>
-                    <p><code class="code">/api/players?removed=1&position=Center&nationality=USA</code></p>
-                </li>
-                <li>
-                    <p class="bold">Body Data Params:</p>
-                    <p>None</p>
-                </li>
-                <li>
-                    <p class="bold">Success Response:</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 200 OK</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{
+            <button class="collapsible"><h3>Return all players - optionally filtered</h3><p class="symbol">+</p></button>
+            <div class="content">
+                <p>Returns JSON data about all players, subject to optional filtering. If no filters are applied, all players on the roster will be returned.</p>
+                <ul>
+                    <li>
+                        <p class="bold">URL:</p>
+                        <p>/api/players</p>
+                    </li>
+                    <li>
+                        <p class="bold">Method:</p>
+                        <p><code class="code">GET</code></p>
+                    </li>
+                    <li>
+                        <p class="bold">Headers:</p>
+                        <ul>
+                            <li><p><span class="bold">Accept:</span> application/json</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">URL Params:</p>
+                        <table>
+                            <tr>
+                                <th>Parameter Name</th>
+                                <th>Type</th>
+                                <th>Required?</th>
+                                <th>Description</th>
+                                <th>Values</th>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">removed</code></td>
+                                <td class="center">boolean</td>
+                                <td class="center">Optional</td>
+                                <td>Enables retrieval of players removed from the roster</td>
+                                <td>
+                                    <code class="code">0</code> (default): Returns only players on the roster<br>
+                                    <code class="code">1</code>: Returns only players removed from the roster
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">position</code></td>
+                                <td class="center">string</td>
+                                <td class="center">Optional</td>
+                                <td>Filters players by position name</td>
+                                <td>Must be one of <code class="code">Goaltender</code>, <code class="code">Defense</code>, <code class="code">Center</code>, <code class="code">Left wing</code> or <code class="code">Right wing</td>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">nationality</code></td>
+                                <td class="center">string</td>
+                                <td class="center">Optional</td>
+                                <td>Filters players by nationality name</td>
+                                <td>Must be a saved nationality - see <span class="italic">Return all nationalities</span> to access this list</td>
+                            </tr>
+                        </table>
+                        <p class="bold">Example:</p>
+                        <p><code class="code">/api/players?removed=1&position=Center&nationality=USA</code></p>
+                    </li>
+                    <li>
+                        <p class="bold">Body Data Params:</p>
+                        <p>None</p>
+                    </li>
+                    <li>
+                        <p class="bold">Success Response:</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 200 OK</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{
     <span class="json-key">"data"</span>: [
         {
             <span class="json-key">"id"</span>: <span class="json-int">1</span>,
@@ -116,14 +119,14 @@
     ],
     <span class="json-key">"message"</span>: <span class="json-str">"Players successfully retrieved"</span>
 }</code></pre>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">Error Response:</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 422 UNPROCESSABLE CONTENT</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">Error Response:</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 422 UNPROCESSABLE CONTENT</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{
     <span class="json-key">"message"</span>: <span class="json-str">"The removed field must be true or false. (and 2 more errors)"</span>,
     <span class="json-key">"errors"</span>: {
         <span class="json-key">"removed"</span>: [<span class="json-str">"The removed field must be true or false."</span>],
@@ -131,19 +134,19 @@
         <span class="json-key">"nationality"</span>: [<span class="json-str">"The selected nationality is invalid."</span>]
     }
 }</code></pre>
-                    </ul>
-                    <p>OR</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">Sample Call:</p>
-                    <ul>
-                        <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
-                        <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class="js-argument">'/api/players?removed=1&position=Center&nationality=USA'</span>, {
+                        </ul>
+                        <p>OR</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">Sample Call:</p>
+                        <ul>
+                            <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
+                            <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class="js-argument">'/api/players?removed=1&position=Center&nationality=USA'</span>, {
         <span class="js-object">method</span>: <span class="js-object-str">'GET'</span>,
         <span class="js-object">headers</span>: {
             <span class="js-object">Accept</span>: <span class="js-object-str">'application/json'</span>
@@ -152,9 +155,10 @@
     })
         .<span class="js-method">then</span>(response <span class="js-arrow">=></span> response.<span class="js-method">json</span>())
         .<span class="js-method">then</span>(data <span class="js-arrow">=></span> console.<span class="js-method">log</span>(data));</code></pre>
-                    </ul>
-                </li>
-            </ul>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </section>
         <section> <!-- Return a specific player -->
             <h3>Return a specific player</h3>
