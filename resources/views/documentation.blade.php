@@ -161,54 +161,55 @@
             </div>
         </section>
         <section> <!-- Return a specific player -->
-            <h3>Return a specific player</h3>
-            <p>Returns JSON data about a specific player, including for players removed from the roster.</p>
-            <ul>
-                <li>
-                    <p class="bold">URL:</p>
-                    <p>/api/players/{jerseyNumber}</p>
-                </li>
-                <li>
-                    <p class="bold">Method:</p>
-                    <p><code class="code">GET</code></p>
-                </li>
-                <li>
-                    <p class="bold">Headers:</p>
-                    <ul>
-                        <li><p><span class="bold">Accept:</span> application/json</p></li>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">URL Params:</p>
-                    <table>
-                        <tr>
-                            <th>Parameter Name</th>
-                            <th>Type</th>
-                            <th>Required?</th>
-                            <th>Description</th>
-                            <th>Values</th>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">jerseyNumber</code></td>
-                            <td class="center">integer</td>
-                            <td class="center">Required</td>
-                            <td>The jersey number of the player to return</td>
-                            <td>1 to 99 (inclusive)</td>
-                        </tr>
-                    </table>
-                    <p class="bold">Example:</p>
-                    <p><code class="code">/api/players/9</code></p>
-                </li>
-                <li>
-                    <p class="bold">Body Data Params:</p>
-                    <p>None</p>
-                </li>
-                <li>
-                    <p class="bold">Success Response:</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 200 OK</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{
+            <button class="collapsible"><h3>Return a specific player</h3><p class="symbol">+</p></button>
+            <div class="content">
+                <p>Returns JSON data about a specific player, including for players removed from the roster.</p>
+                <ul>
+                    <li>
+                        <p class="bold">URL:</p>
+                        <p>/api/players/{jerseyNumber}</p>
+                    </li>
+                    <li>
+                        <p class="bold">Method:</p>
+                        <p><code class="code">GET</code></p>
+                    </li>
+                    <li>
+                        <p class="bold">Headers:</p>
+                        <ul>
+                            <li><p><span class="bold">Accept:</span> application/json</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">URL Params:</p>
+                        <table>
+                            <tr>
+                                <th>Parameter Name</th>
+                                <th>Type</th>
+                                <th>Required?</th>
+                                <th>Description</th>
+                                <th>Values</th>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">jerseyNumber</code></td>
+                                <td class="center">integer</td>
+                                <td class="center">Required</td>
+                                <td>The jersey number of the player to return</td>
+                                <td>1 to 99 (inclusive)</td>
+                            </tr>
+                        </table>
+                        <p class="bold">Example:</p>
+                        <p><code class="code">/api/players/9</code></p>
+                    </li>
+                    <li>
+                        <p class="bold">Body Data Params:</p>
+                        <p>None</p>
+                    </li>
+                    <li>
+                        <p class="bold">Success Response:</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 200 OK</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{
     <span class="json-key">"data"</span>: {
         <span class="json-key">"id"</span>: <span class="json-int">9</span>,
         <span class="json-key">"name"</span>: <span class="json-str">"J. T. Miller"</span>,
@@ -241,27 +242,27 @@
     },
     <span class="json-key">"message"</span>: <span class="json-str">"Player successfully retrieved"</span>
 }</code></pre>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">Error Response:</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 404 NOT FOUND</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player with jersey number 9 not found"</span> }</code></pre>
-                    </ul>
-                    <p>OR</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">Sample Call:</p>
-                    <ul>
-                        <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
-                        <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class="js-argument">'/api/players/9'</span>, {
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">Error Response:</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 404 NOT FOUND</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player with jersey number 9 not found"</span> }</code></pre>
+                        </ul>
+                        <p>OR</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">Sample Call:</p>
+                        <ul>
+                            <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
+                            <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class="js-argument">'/api/players/9'</span>, {
         <span class="js-object">method</span>: <span class="js-object-str">'GET'</span>,
         <span class="js-object">headers</span>: {
             <span class="js-object">Accept</span>: <span class="js-object-str">'application/json'</span>
@@ -270,117 +271,119 @@
     })
         .<span class="js-method">then</span>(response <span class="js-arrow">=></span> response.<span class="js-method">json</span>())
         .<span class="js-method">then</span>(data <span class="js-arrow">=></span> console.<span class="js-method">log</span>(data));</code></pre>
-                    </ul>
-                </li>
-            </ul>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </section>
         <section> <!-- Add a player -->
-            <h3>Add a player</h3>
-            <p>Adds a new player's data.</p>
-            <ul>
-                <li>
-                    <p class="bold">URL:</p>
-                    <p>/api/players</p>
-                </li>
-                <li>
-                    <p class="bold">Method:</p>
-                    <p><code class="code">POST</code></p>
-                </li>
-                <li>
-                    <p class="bold">Headers:</p>
-                    <ul>
-                        <li><p><span class="bold">Content-Type:</span> application/json</p></li>
-                        <li><p><span class="bold">Accept:</span> application/json</p></li>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">URL Params:</p>
-                    <p>None</p>
-                </li>
-                <li>
-                    <p class="bold">Body Data Params:</p>
-                    <p class="italic">All parameters must be sent as JSON with the correct headers.</p>
-                    <table>
-                        <tr>
-                            <th>Parameter Name</th>
-                            <th>Data Type</th>
-                            <th>Required?</th>
-                            <th>Description</th>
-                            <th>Constraints</th>
-                            <th>Example Value</th>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">name</code></td>
-                            <td class="center">string</td>
-                            <td class="center">Required</td>
-                            <td>The player's name</td>
-                            <td>Max length: 255</td>
-                            <td><code class="code">'J. T. Miller'</code></td>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">jerseyNumber</code></td>
-                            <td class="center">integer</td>
-                            <td class="center">Required</td>
-                            <td>The player's jersey number</td>
-                            <td>Between 1 and 99 (inclusive); must not already be assigned</td>
-                            <td><code class="code">9</code></td>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">dateOfBirth</code></td>
-                            <td class="center">string</td>
-                            <td class="center">Required</td>
-                            <td>The player's date of birth</td>
-                            <td>Date format: yyyy-mm-dd</td>
-                            <td><code class="code">'1993-03-14'</code></td>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">position</code></td>
-                            <td class="center">string</td>
-                            <td class="center">Required</td>
-                            <td>The player's primary position</td>
-                            <td>Must be one of <code class="code">'Goaltender'</code>, <code class="code">'Defense'</code>, <code class="code">'Center'</code>, <code class="code">'Left wing'</code> or <code class="code">'Right wing'</code></td>
-                            <td><code class="code">'Center'</code></td>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">nationality</code></td>
-                            <td class="center">string</td>
-                            <td class="center">Required</td>
-                            <td>The name of the nation the player represents</td>
-                            <td>Max length: 255</td>
-                            <td><code class="code">'USA'</code></td>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">draftTeam</code></td>
-                            <td class="center">string</td>
-                            <td class="center">Optional</td>
-                            <td>The name of the player's draft team (omit or set as <code class="code">null</code> if the player is undrafted)</td>
-                            <td>Max length: 255</td>
-                            <td><code class="code">'New York Rangers'</code></td>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">previousTeams</code></td>
-                            <td class="center">array</td>
-                            <td class="center">Optional</td>
-                            <td>The names of the teams the player has previously played for (omit or set as <code class="code">null</code> if the player has none)</td>
-                            <td>Team names must be of type <code class="code">string</code> with max length: 255 and no repeats</td>
-                            <td><code class="code">['New York Rangers', 'Tampa Bay Lightning']</code></td>
-                        </tr>
-                    </table>
-                </li>
-                <li>
-                    <p class="bold">Success Response:</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 201 CREATED</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player added"</span> }</code></pre>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">Error Response:</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 422 UNPROCESSABLE CONTENT</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{
+            <button class="collapsible"><h3>Add a player</h3><p class="symbol">+</p></button>
+            <div class="content">
+                <p>Adds a new player's data.</p>
+                <ul>
+                    <li>
+                        <p class="bold">URL:</p>
+                        <p>/api/players</p>
+                    </li>
+                    <li>
+                        <p class="bold">Method:</p>
+                        <p><code class="code">POST</code></p>
+                    </li>
+                    <li>
+                        <p class="bold">Headers:</p>
+                        <ul>
+                            <li><p><span class="bold">Content-Type:</span> application/json</p></li>
+                            <li><p><span class="bold">Accept:</span> application/json</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">URL Params:</p>
+                        <p>None</p>
+                    </li>
+                    <li>
+                        <p class="bold">Body Data Params:</p>
+                        <p class="italic">All parameters must be sent as JSON with the correct headers.</p>
+                        <table>
+                            <tr>
+                                <th>Parameter Name</th>
+                                <th>Data Type</th>
+                                <th>Required?</th>
+                                <th>Description</th>
+                                <th>Constraints</th>
+                                <th>Example Value</th>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">name</code></td>
+                                <td class="center">string</td>
+                                <td class="center">Required</td>
+                                <td>The player's name</td>
+                                <td>Max length: 255</td>
+                                <td><code class="code">'J. T. Miller'</code></td>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">jerseyNumber</code></td>
+                                <td class="center">integer</td>
+                                <td class="center">Required</td>
+                                <td>The player's jersey number</td>
+                                <td>Between 1 and 99 (inclusive); must not already be assigned</td>
+                                <td><code class="code">9</code></td>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">dateOfBirth</code></td>
+                                <td class="center">string</td>
+                                <td class="center">Required</td>
+                                <td>The player's date of birth</td>
+                                <td>Date format: yyyy-mm-dd</td>
+                                <td><code class="code">'1993-03-14'</code></td>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">position</code></td>
+                                <td class="center">string</td>
+                                <td class="center">Required</td>
+                                <td>The player's primary position</td>
+                                <td>Must be one of <code class="code">'Goaltender'</code>, <code class="code">'Defense'</code>, <code class="code">'Center'</code>, <code class="code">'Left wing'</code> or <code class="code">'Right wing'</code></td>
+                                <td><code class="code">'Center'</code></td>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">nationality</code></td>
+                                <td class="center">string</td>
+                                <td class="center">Required</td>
+                                <td>The name of the nation the player represents</td>
+                                <td>Max length: 255</td>
+                                <td><code class="code">'USA'</code></td>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">draftTeam</code></td>
+                                <td class="center">string</td>
+                                <td class="center">Optional</td>
+                                <td>The name of the player's draft team (omit or set as <code class="code">null</code> if the player is undrafted)</td>
+                                <td>Max length: 255</td>
+                                <td><code class="code">'New York Rangers'</code></td>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">previousTeams</code></td>
+                                <td class="center">array</td>
+                                <td class="center">Optional</td>
+                                <td>The names of the teams the player has previously played for (omit or set as <code class="code">null</code> if the player has none)</td>
+                                <td>Team names must be of type <code class="code">string</code> with max length: 255 and no repeats</td>
+                                <td><code class="code">['New York Rangers', 'Tampa Bay Lightning']</code></td>
+                            </tr>
+                        </table>
+                    </li>
+                    <li>
+                        <p class="bold">Success Response:</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 201 CREATED</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player added"</span> }</code></pre>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">Error Response:</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 422 UNPROCESSABLE CONTENT</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{
     <span class="json-key">"message"</span>: <span class="json-str">"The name field must be a string. (and 6 more errors)"</span>,
     <span class="json-key">"errors"</span>: {
         <span class="json-key">"name"</span>: [<span class="json-str">"The name field must be a string."</span>],
@@ -392,19 +395,19 @@
         <span class="json-key">"previousTeams"</span>: [<span class="json-str">"The previous teams field must be an array."</span>]
     }
 }</code></pre>
-                    </ul>
-                    <p>OR</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">Sample Call:</p>
-                    <ul>
-                        <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
-                        <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class=js-argument>'/api/players'</span>, {
+                        </ul>
+                        <p>OR</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">Sample Call:</p>
+                        <ul>
+                            <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
+                            <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class=js-argument>'/api/players'</span>, {
     <span class="js-object">method</span>: <span class="js-object-str">'POST'</span>,
     <span class="js-object">headers</span>: {
         <span class="js-object-str">'Content-Type'</span>: <span class="js-object-str">'application/json'</span>,
@@ -426,140 +429,142 @@
 })
     .<span class="js-method">then</span>(response <span class="js-arrow">=></span> response.<span class="js-method">json</span>())
     .<span class="js-method">then</span>(data <span class="js-arrow">=></span> console.<span class="js-method">log</span>(data));</code></pre>
-                    </ul>
-                </li>
-            </ul>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </section>
         <section> <!-- Update a player -->
-            <h3>Update a player</h3>
-            <p>Updates an existing player's data.</p>
-            <ul>
-                <li>
-                    <p class="bold">URL:</p>
-                    <p>/api/players/{jerseyNumber}</p>
-                </li>
-                <li>
-                    <p class="bold">Method:</p>
-                    <p><code class="code">PUT</code></p>
-                </li>
-                <li>
-                    <p class="bold">Headers:</p>
-                    <ul>
-                        <li><p><span class="bold">Content-Type:</span> application/json</p></li>
-                        <li><p><span class="bold">Accept:</span> application/json</p></li>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">URL Params:</p>
-                    <table>
-                        <tr>
-                            <th>Parameter Name</th>
-                            <th>Type</th>
-                            <th>Required?</th>
-                            <th>Description</th>
-                            <th>Values</th>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">jerseyNumber</code></td>
-                            <td class="center">integer</td>
-                            <td class="center">Required</td>
-                            <td>The jersey number of the player to update</td>
-                            <td>1 to 99 (inclusive)</td>
-                        </tr>
-                    </table>
-                    <p class="bold">Example:</p>
-                    <p><code class="code">/api/players/9</code></p>
-                </li>
-                <li>
-                    <p class="bold">Body Data Params:</p>
-                    <p class="italic">All parameters must be sent as JSON with the correct headers.</p>
-                    <table>
-                        <tr>
-                            <th>Parameter Name</th>
-                            <th>Data Type</th>
-                            <th>Required?</th>
-                            <th>Description</th>
-                            <th>Constraints</th>
-                            <th>Example Value</th>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">name</code></td>
-                            <td class="center">string</td>
-                            <td class="center">Optional</td>
-                            <td>The player's updated name</td>
-                            <td>Max length: 255</td>
-                            <td><code class="code">'J. T. Miller'</code></td>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">jerseyNumber</code></td>
-                            <td class="center">integer</td>
-                            <td class="center">Optional</td>
-                            <td>The player's updated jersey number</td>
-                            <td>Between 1 and 99 (inclusive); must not already be assigned</td>
-                            <td><code class="code">9</code></td>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">dateOfBirth</code></td>
-                            <td class="center">string</td>
-                            <td class="center">Optional</td>
-                            <td>The player's updated date of birth</td>
-                            <td>Date format: yyyy-mm-dd</td>
-                            <td><code class="code">'1993-03-14'</code></td>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">position</code></td>
-                            <td class="center">string</td>
-                            <td class="center">Optional</td>
-                            <td>The player's updated primary position</td>
-                            <td>Must be one of <code class="code">'Goaltender'</code>, <code class="code">'Defense'</code>, <code class="code">'Center'</code>, <code class="code">'Left wing'</code> or <code class="code">'Right wing'</code></td>
-                            <td><code class="code">'Center'</code></td>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">nationality</code></td>
-                            <td class="center">string</td>
-                            <td class="center">Optional</td>
-                            <td>The updated name of the nation the player represents</td>
-                            <td>Max length: 255</td>
-                            <td><code class="code">'USA'</code></td>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">draftTeam</code></td>
-                            <td class="center">string</td>
-                            <td class="center">Optional</td>
-                            <td>The updated name of the player's draft team (set as <code class="code">null</code> to update to undrafted)</td>
-                            <td>Max length: 255</td>
-                            <td><code class="code">'New York Rangers'</code></td>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">previousTeams</code></td>
-                            <td class="center">array</td>
-                            <td class="center">Optional</td>
-                            <td>The updated names of the teams the player has previously played for (set as <code class="code">null</code> to update to none)</td>
-                            <td>Team names must be of type <code class="code">string</code> with max length: 255 and no repeats</td>
-                            <td><code class="code">['New York Rangers', 'Tampa Bay Lightning']</code></td>
-                        </tr>
-                    </table>
-                </li>
-                <li>
-                    <p class="bold">Success Response:</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 200 OK</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player updated"</span> }</code></pre>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">Error Response:</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 404 NOT FOUND</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player with jersey number 9 not found"</span> }</code></pre>
-                    </ul>
-                    <p>OR</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 422 UNPROCESSABLE CONTENT</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{
+            <button class="collapsible"><h3>Update a player</h3><p class="symbol">+</p></button>
+            <div class="content">
+                <p>Updates an existing player's data.</p>
+                <ul>
+                    <li>
+                        <p class="bold">URL:</p>
+                        <p>/api/players/{jerseyNumber}</p>
+                    </li>
+                    <li>
+                        <p class="bold">Method:</p>
+                        <p><code class="code">PUT</code></p>
+                    </li>
+                    <li>
+                        <p class="bold">Headers:</p>
+                        <ul>
+                            <li><p><span class="bold">Content-Type:</span> application/json</p></li>
+                            <li><p><span class="bold">Accept:</span> application/json</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">URL Params:</p>
+                        <table>
+                            <tr>
+                                <th>Parameter Name</th>
+                                <th>Type</th>
+                                <th>Required?</th>
+                                <th>Description</th>
+                                <th>Values</th>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">jerseyNumber</code></td>
+                                <td class="center">integer</td>
+                                <td class="center">Required</td>
+                                <td>The jersey number of the player to update</td>
+                                <td>1 to 99 (inclusive)</td>
+                            </tr>
+                        </table>
+                        <p class="bold">Example:</p>
+                        <p><code class="code">/api/players/9</code></p>
+                    </li>
+                    <li>
+                        <p class="bold">Body Data Params:</p>
+                        <p class="italic">All parameters must be sent as JSON with the correct headers.</p>
+                        <table>
+                            <tr>
+                                <th>Parameter Name</th>
+                                <th>Data Type</th>
+                                <th>Required?</th>
+                                <th>Description</th>
+                                <th>Constraints</th>
+                                <th>Example Value</th>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">name</code></td>
+                                <td class="center">string</td>
+                                <td class="center">Optional</td>
+                                <td>The player's updated name</td>
+                                <td>Max length: 255</td>
+                                <td><code class="code">'J. T. Miller'</code></td>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">jerseyNumber</code></td>
+                                <td class="center">integer</td>
+                                <td class="center">Optional</td>
+                                <td>The player's updated jersey number</td>
+                                <td>Between 1 and 99 (inclusive); must not already be assigned</td>
+                                <td><code class="code">9</code></td>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">dateOfBirth</code></td>
+                                <td class="center">string</td>
+                                <td class="center">Optional</td>
+                                <td>The player's updated date of birth</td>
+                                <td>Date format: yyyy-mm-dd</td>
+                                <td><code class="code">'1993-03-14'</code></td>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">position</code></td>
+                                <td class="center">string</td>
+                                <td class="center">Optional</td>
+                                <td>The player's updated primary position</td>
+                                <td>Must be one of <code class="code">'Goaltender'</code>, <code class="code">'Defense'</code>, <code class="code">'Center'</code>, <code class="code">'Left wing'</code> or <code class="code">'Right wing'</code></td>
+                                <td><code class="code">'Center'</code></td>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">nationality</code></td>
+                                <td class="center">string</td>
+                                <td class="center">Optional</td>
+                                <td>The updated name of the nation the player represents</td>
+                                <td>Max length: 255</td>
+                                <td><code class="code">'USA'</code></td>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">draftTeam</code></td>
+                                <td class="center">string</td>
+                                <td class="center">Optional</td>
+                                <td>The updated name of the player's draft team (set as <code class="code">null</code> to update to undrafted)</td>
+                                <td>Max length: 255</td>
+                                <td><code class="code">'New York Rangers'</code></td>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">previousTeams</code></td>
+                                <td class="center">array</td>
+                                <td class="center">Optional</td>
+                                <td>The updated names of the teams the player has previously played for (set as <code class="code">null</code> to update to none)</td>
+                                <td>Team names must be of type <code class="code">string</code> with max length: 255 and no repeats</td>
+                                <td><code class="code">['New York Rangers', 'Tampa Bay Lightning']</code></td>
+                            </tr>
+                        </table>
+                    </li>
+                    <li>
+                        <p class="bold">Success Response:</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 200 OK</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player updated"</span> }</code></pre>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">Error Response:</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 404 NOT FOUND</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player with jersey number 9 not found"</span> }</code></pre>
+                        </ul>
+                        <p>OR</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 422 UNPROCESSABLE CONTENT</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{
     <span class="json-key">"message"</span>: <span class="json-str">"The name field must be a string. (and 6 more errors)"</span>,
     <span class="json-key">"errors"</span>: {
         <span class="json-key">"name"</span>: [<span class="json-str">"The name field must be a string."</span>],
@@ -571,19 +576,19 @@
         <span class="json-key">"previousTeams"</span>: [<span class="json-str">"The previous teams field must be an array."</span>]
     }
 }</code></pre>
-                    </ul>
-                    <p>OR</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">Sample Call:</p>
-                    <ul>
-                        <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
-                        <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class=js-argument>'/api/players/9'</span>, {
+                        </ul>
+                        <p>OR</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">Sample Call:</p>
+                        <ul>
+                            <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
+                            <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class=js-argument>'/api/players/9'</span>, {
     <span class="js-object">method</span>: <span class="js-object-str">'PUT'</span>,
     <span class="js-object">headers</span>: {
         <span class="js-object-str">'Content-Type'</span>: <span class="js-object-str">'application/json'</span>,
@@ -597,120 +602,122 @@
 })
     .<span class="js-method">then</span>(response <span class="js-arrow">=></span> response.<span class="js-method">json</span>())
     .<span class="js-method">then</span>(data <span class="js-arrow">=></span> console.<span class="js-method">log</span>(data));</code></pre>
-                    </ul>
-                </li>
-            </ul>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </section>
         <section> <!-- Remove/restore a player -->
-            <h3>Remove/restore a player</h3>
-            <p>Updates an existing player's roster status. Players removed from the roster are not permanently deleted and can subsequently be restored to the roster.</p>
-            <ul>
-                <li>
-                    <p class="bold">URL:</p>
-                    <p>/api/players/{jerseyNumber}</p>
-                </li>
-                <li>
-                    <p class="bold">Method:</p>
-                    <p><code class="code">PATCH</code></p>
-                </li>
-                <li>
-                    <p class="bold">Headers:</p>
-                    <ul>
-                        <li><p><span class="bold">Content-Type:</span> application/json</p></li>
-                        <li><p><span class="bold">Accept:</span> application/json</p></li>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">URL Params:</p>
-                    <table>
-                        <tr>
-                            <th>Parameter Name</th>
-                            <th>Type</th>
-                            <th>Required?</th>
-                            <th>Description</th>
-                            <th>Values</th>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">jerseyNumber</code></td>
-                            <td class="center">integer</td>
-                            <td class="center">Required</td>
-                            <td>The jersey number of the player to remove/restore</td>
-                            <td>1 to 99 (inclusive)</td>
-                        </tr>
-                    </table>
-                    <p class="bold">Example:</p>
-                    <p><code class="code">/api/players/9</code></p>
-                </li>
-                <li>
-                    <p class="bold">Body Data Params:</p>
-                    <p class="italic">All parameters must be sent as JSON with the correct headers.</p>
-                    <table>
-                        <tr>
-                            <th>Parameter Name</th>
-                            <th>Data Type</th>
-                            <th>Required?</th>
-                            <th>Description</th>
-                            <th>Constraints</th>
-                            <th>Example Value</th>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">action</code></td>
-                            <td class="center">string</td>
-                            <td class="center">Required</td>
-                            <td>The action to effect on the player's roster status</td>
-                            <td>Must be either <code class="code">'remove'</code> or <code class="code">'restore'</code></td>
-                            <td><code class="code">'remove'</code></td>
-                        </tr>
-                    </table>
-                </li>
-                <li>
-                    <p class="bold">Success Response:</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 200 OK</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player removed from roster"</span> }</code></pre>
+            <button class="collapsible"><h3>Remove/restore a player</h3><p class="symbol">+</p></button>
+            <div class="content">
+                <p>Updates an existing player's roster status. Players removed from the roster are not permanently deleted and can subsequently be restored to the roster.</p>
+                <ul>
+                    <li>
+                        <p class="bold">URL:</p>
+                        <p>/api/players/{jerseyNumber}</p>
+                    </li>
+                    <li>
+                        <p class="bold">Method:</p>
+                        <p><code class="code">PATCH</code></p>
+                    </li>
+                    <li>
+                        <p class="bold">Headers:</p>
+                        <ul>
+                            <li><p><span class="bold">Content-Type:</span> application/json</p></li>
+                            <li><p><span class="bold">Accept:</span> application/json</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">URL Params:</p>
+                        <table>
+                            <tr>
+                                <th>Parameter Name</th>
+                                <th>Type</th>
+                                <th>Required?</th>
+                                <th>Description</th>
+                                <th>Values</th>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">jerseyNumber</code></td>
+                                <td class="center">integer</td>
+                                <td class="center">Required</td>
+                                <td>The jersey number of the player to remove/restore</td>
+                                <td>1 to 99 (inclusive)</td>
+                            </tr>
+                        </table>
+                        <p class="bold">Example:</p>
+                        <p><code class="code">/api/players/9</code></p>
+                    </li>
+                    <li>
+                        <p class="bold">Body Data Params:</p>
+                        <p class="italic">All parameters must be sent as JSON with the correct headers.</p>
+                        <table>
+                            <tr>
+                                <th>Parameter Name</th>
+                                <th>Data Type</th>
+                                <th>Required?</th>
+                                <th>Description</th>
+                                <th>Constraints</th>
+                                <th>Example Value</th>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">action</code></td>
+                                <td class="center">string</td>
+                                <td class="center">Required</td>
+                                <td>The action to effect on the player's roster status</td>
+                                <td>Must be either <code class="code">'remove'</code> or <code class="code">'restore'</code></td>
+                                <td><code class="code">'remove'</code></td>
+                            </tr>
+                        </table>
+                    </li>
+                    <li>
+                        <p class="bold">Success Response:</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 200 OK</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player removed from roster"</span> }</code></pre>
+                            <p>OR</p>
+                            <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player restored to roster"</span> }</code></pre>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">Error Response:</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 400 BAD REQUEST</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player already removed from roster"</span> }</code></pre>
+                            <p>OR</p>
+                            <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player already on roster"</span> }</code></pre>
+                        </ul>
                         <p>OR</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player restored to roster"</span> }</code></pre>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">Error Response:</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 400 BAD REQUEST</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player already removed from roster"</span> }</code></pre>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 404 NOT FOUND</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player with jersey number 9 not found"</span> }</code></pre>
+                        </ul>
                         <p>OR</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player already on roster"</span> }</code></pre>
-                    </ul>
-                    <p>OR</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 404 NOT FOUND</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player with jersey number 9 not found"</span> }</code></pre>
-                    </ul>
-                    <p>OR</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 422 UNPROCESSABLE CONTENT</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 422 UNPROCESSABLE CONTENT</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{
     <span class="json-key">"message"</span>: <span class="json-str">"The selected action is invalid."</span>,
     <span class="json-key">"errors"</span>: {
         <span class="json-key">"action"</span>: [<span class="json-str">"The selected action is invalid."</span>]
     }
 }</code></pre>
-                    </ul>
-                    <p>OR</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">Sample Call:</p>
-                    <ul>
-                        <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
-                        <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class=js-argument>'/api/players/9'</span>, {
+                        </ul>
+                        <p>OR</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">Sample Call:</p>
+                        <ul>
+                            <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
+                            <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class=js-argument>'/api/players/9'</span>, {
     <span class="js-object">method</span>: <span class="js-object-str">'PATCH'</span>,
     <span class="js-object">headers</span>: {
         <span class="js-object-str">'Content-Type'</span>: <span class="js-object-str">'application/json'</span>,
@@ -723,80 +730,82 @@
 })
     .<span class="js-method">then</span>(response <span class="js-arrow">=></span> response.<span class="js-method">json</span>())
     .<span class="js-method">then</span>(data <span class="js-arrow">=></span> console.<span class="js-method">log</span>(data));</code></pre>
-                    </ul>
-                </li>
-            </ul>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </section>
         <section> <!-- Delete a player -->
-            <h3>Delete a player</h3>
-            <p>Permanently deletes a player's data.</p>
-            <ul>
-                <li>
-                    <p class="bold">URL:</p>
-                    <p>/api/players/{jerseyNumber}</p>
-                </li>
-                <li>
-                    <p class="bold">Method:</p>
-                    <p><code class="code">DELETE</code></p>
-                </li>
-                <li>
-                    <p class="bold">Headers:</p>
-                    <ul>
-                        <li><p><span class="bold">Accept:</span> application/json</p></li>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">URL Params:</p>
-                    <table>
-                        <tr>
-                            <th>Parameter Name</th>
-                            <th>Type</th>
-                            <th>Required?</th>
-                            <th>Description</th>
-                            <th>Values</th>
-                        </tr>
-                        <tr>
-                            <td class="center"><code class="code">jerseyNumber</code></td>
-                            <td class="center">integer</td>
-                            <td class="center">Required</td>
-                            <td>The jersey number of the player to delete</td>
-                            <td>1 to 99 (inclusive)</td>
-                        </tr>
-                    </table>
-                    <p class="bold">Example:</p>
-                    <p><code class="code">/api/players/9</code></p>
-                </li>
-                <li>
-                    <p class="bold">Body Data Params:</p>
-                    <p>None</p>
-                </li>
-                <li>
-                    <p class="bold">Success Response:</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 200 OK</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player deleted"</span> }</code></pre>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">Error Response:</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 404 NOT FOUND</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player with jersey number 9 not found"</span> }</code></pre>
-                    </ul>
-                    <p>OR</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">Sample Call:</p>
-                    <ul>
-                        <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
-                        <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class="js-argument">'/api/players/9'</span>, {
+            <button class="collapsible"><h3>Delete a player</h3><p class="symbol">+</p></button>
+            <div class="content">
+                <p>Permanently deletes a player's data.</p>
+                <ul>
+                    <li>
+                        <p class="bold">URL:</p>
+                        <p>/api/players/{jerseyNumber}</p>
+                    </li>
+                    <li>
+                        <p class="bold">Method:</p>
+                        <p><code class="code">DELETE</code></p>
+                    </li>
+                    <li>
+                        <p class="bold">Headers:</p>
+                        <ul>
+                            <li><p><span class="bold">Accept:</span> application/json</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">URL Params:</p>
+                        <table>
+                            <tr>
+                                <th>Parameter Name</th>
+                                <th>Type</th>
+                                <th>Required?</th>
+                                <th>Description</th>
+                                <th>Values</th>
+                            </tr>
+                            <tr>
+                                <td class="center"><code class="code">jerseyNumber</code></td>
+                                <td class="center">integer</td>
+                                <td class="center">Required</td>
+                                <td>The jersey number of the player to delete</td>
+                                <td>1 to 99 (inclusive)</td>
+                            </tr>
+                        </table>
+                        <p class="bold">Example:</p>
+                        <p><code class="code">/api/players/9</code></p>
+                    </li>
+                    <li>
+                        <p class="bold">Body Data Params:</p>
+                        <p>None</p>
+                    </li>
+                    <li>
+                        <p class="bold">Success Response:</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 200 OK</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player deleted"</span> }</code></pre>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">Error Response:</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 404 NOT FOUND</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Player with jersey number 9 not found"</span> }</code></pre>
+                        </ul>
+                        <p>OR</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">Sample Call:</p>
+                        <ul>
+                            <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
+                            <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class="js-argument">'/api/players/9'</span>, {
         <span class="js-object">method</span>: <span class="js-object-str">'DELETE'</span>,
         <span class="js-object">headers</span>: {
             <span class="js-object">Accept</span>: <span class="js-object-str">'application/json'</span>
@@ -805,42 +814,44 @@
     })
         .<span class="js-method">then</span>(response <span class="js-arrow">=></span> response.<span class="js-method">json</span>())
         .<span class="js-method">then</span>(data <span class="js-arrow">=></span> console.<span class="js-method">log</span>(data));</code></pre>
-                    </ul>
-                </li>
-            </ul>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </section>
         <section> <!-- Return all positions -->
-            <h3>Return all positions</h3>
-            <p>Returns the names of all positions, as JSON data.</p>
-            <ul>
-                <li>
-                    <p class="bold">URL:</p>
-                    <p>/api/positions</p>
-                </li>
-                <li>
-                    <p class="bold">Method:</p>
-                    <p><code class="code">GET</code></p>
-                </li>
-                <li>
-                    <p class="bold">Headers:</p>
-                    <ul>
-                        <li><p><span class="bold">Accept:</span> application/json</p></li>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">URL Params:</p>
-                    <p>None</p>
-                </li>
-                <li>
-                    <p class="bold">Body Data Params:</p>
-                    <p>None</p>
-                </li>
-                <li>
-                    <p class="bold">Success Response:</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 200 OK</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{
+            <button class="collapsible"><h3>Return all positions</h3><p class="symbol">+</p></button>
+            <div class="content">
+                <p>Returns the names of all positions, as JSON data.</p>
+                <ul>
+                    <li>
+                        <p class="bold">URL:</p>
+                        <p>/api/positions</p>
+                    </li>
+                    <li>
+                        <p class="bold">Method:</p>
+                        <p><code class="code">GET</code></p>
+                    </li>
+                    <li>
+                        <p class="bold">Headers:</p>
+                        <ul>
+                            <li><p><span class="bold">Accept:</span> application/json</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">URL Params:</p>
+                        <p>None</p>
+                    </li>
+                    <li>
+                        <p class="bold">Body Data Params:</p>
+                        <p>None</p>
+                    </li>
+                    <li>
+                        <p class="bold">Success Response:</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 200 OK</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{
     <span class="json-key">"data"</span>: [
         { <span class="json-key">"name"</span>: <span class="json-str">"Goaltender"</span> },
         { <span class="json-key">"name"</span>: <span class="json-str">"Defense"</span> },
@@ -850,21 +861,21 @@
     ],
     <span class="json-key">"message"</span>: <span class="json-str">"Positions successfully retrieved"</span>
 }</code></pre>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">Error Response:</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">Sample Call:</p>
-                    <ul>
-                        <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
-                        <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class="js-argument">'/api/positions'</span>, {
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">Error Response:</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">Sample Call:</p>
+                        <ul>
+                            <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
+                            <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class="js-argument">'/api/positions'</span>, {
         <span class="js-object">method</span>: <span class="js-object-str">'GET'</span>,
         <span class="js-object">headers</span>: {
             <span class="js-object">Accept</span>: <span class="js-object-str">'application/json'</span>
@@ -873,42 +884,44 @@
     })
         .<span class="js-method">then</span>(response <span class="js-arrow">=></span> response.<span class="js-method">json</span>())
         .<span class="js-method">then</span>(data <span class="js-arrow">=></span> console.<span class="js-method">log</span>(data));</code></pre>
-                    </ul>
-                </li>
-            </ul>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </section>
         <section> <!-- Return all nationalities -->
-            <h3>Return all nationalities</h3>
-            <p>Returns the names of all nationalities, as JSON data.</p>
-            <ul>
-                <li>
-                    <p class="bold">URL:</p>
-                    <p>/api/nationalities</p>
-                </li>
-                <li>
-                    <p class="bold">Method:</p>
-                    <p><code class="code">GET</code></p>
-                </li>
-                <li>
-                    <p class="bold">Headers:</p>
-                    <ul>
-                        <li><p><span class="bold">Accept:</span> application/json</p></li>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">URL Params:</p>
-                    <p>None</p>
-                </li>
-                <li>
-                    <p class="bold">Body Data Params:</p>
-                    <p>None</p>
-                </li>
-                <li>
-                    <p class="bold">Success Response:</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 200 OK</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{
+            <button class="collapsible"><h3>Return all nationalities</h3><p class="symbol">+</p></button>
+            <div class="content">
+                <p>Returns the names of all nationalities, as JSON data.</p>
+                <ul>
+                    <li>
+                        <p class="bold">URL:</p>
+                        <p>/api/nationalities</p>
+                    </li>
+                    <li>
+                        <p class="bold">Method:</p>
+                        <p><code class="code">GET</code></p>
+                    </li>
+                    <li>
+                        <p class="bold">Headers:</p>
+                        <ul>
+                            <li><p><span class="bold">Accept:</span> application/json</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">URL Params:</p>
+                        <p>None</p>
+                    </li>
+                    <li>
+                        <p class="bold">Body Data Params:</p>
+                        <p>None</p>
+                    </li>
+                    <li>
+                        <p class="bold">Success Response:</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 200 OK</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{
     <span class="json-key">"data"</span>: [
         { <span class="json-key">"name"</span>: <span class="json-str">"USA"</span> },
         { <span class="json-key">"name"</span>: <span class="json-str">"Canada"</span> },
@@ -916,21 +929,21 @@
     ],
     <span class="json-key">"message"</span>: <span class="json-str">"Nationalities successfully retrieved"</span>
 }</code></pre>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">Error Response:</p>
-                    <ul>
-                        <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
-                        <p class="bold">Content:</p>
-                        <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
-                    </ul>
-                </li>
-                <li>
-                    <p class="bold">Sample Call:</p>
-                    <ul>
-                        <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
-                        <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class="js-argument">'/api/nationalities'</span>, {
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">Error Response:</p>
+                        <ul>
+                            <li><p><span class="bold">Code:</span> 500 INTERNAL SERVER ERROR</p></li>
+                            <p class="bold">Content:</p>
+                            <pre class="code codeblock"><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Unexpected error occurred"</span> }</code></pre>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="bold">Sample Call:</p>
+                        <ul>
+                            <li><p><span class="bold">JavaScript</span> (<code class="code">fetch</code>):</p></li>
+                            <pre class="code codeblock"><code><span class="js-method">fetch</span>(<span class="js-argument">'/api/nationalities'</span>, {
         <span class="js-object">method</span>: <span class="js-object-str">'GET'</span>,
         <span class="js-object">headers</span>: {
             <span class="js-object-str">'Accept'</span>: <span class="js-object-str">'application/json'</span>
@@ -939,9 +952,10 @@
     })
         .<span class="js-method">then</span>(response <span class="js-arrow">=></span> response.<span class="js-method">json</span>())
         .<span class="js-method">then</span>(data <span class="js-arrow">=></span> console.<span class="js-method">log</span>(data));</code></pre>
-                    </ul>
-                </li>
-            </ul>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </section>
     </div>
 </body>
