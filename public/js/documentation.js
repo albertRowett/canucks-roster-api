@@ -16,3 +16,15 @@ for (let i = 0; i < length; i++) {
         }
     });
 }
+
+const link = document.querySelector('.returnAllNationalitiesLink');
+link.addEventListener('click', handleLinkClick);
+
+function handleLinkClick() {
+    const collapsible = document.querySelector('#returnAllNationalities');
+    collapsible.classList.add('active');
+    const content = collapsible.nextElementSibling;
+    content.style.display = 'block';
+    const symbol = collapsible.lastChild;
+    symbol.textContent = '\u2212';
+}

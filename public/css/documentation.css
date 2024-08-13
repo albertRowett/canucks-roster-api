@@ -142,3 +142,7 @@ footer {
 .subsequent-bullet {
     margin-top: 0.25rem;
 }
+
+#returnAllNationalities {
+    outline: 0;
+}

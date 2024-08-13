@@ -71,7 +71,7 @@
                                     <td class="center">string</td>
                                     <td class="center">Optional</td>
                                     <td>Filters players by nationality name</td>
-                                    <td>Must be a saved nationality - see <span class="italic">Return all nationalities</span> to access this list</td>
+                                    <td>Must be a saved nationality - see <a href="#returnAllNationalities" class="returnAllNationalitiesLink">Return all nationalities</a> to access this list</td>
                                 </tr>
                             </table>
                             <p class="bold">Example:</p>
@@ -891,7 +891,7 @@
                 </div>
             </section>
             <section> <!-- Return all nationalities -->
-                <button class="collapsible"><h3>Return all nationalities</h3><p class="symbol">+</p></button>
+                <button id="returnAllNationalities" class="collapsible"><h3>Return all nationalities</h3><p class="symbol">+</p></button>
                 <div class="content">
                     <p>Returns the names of all nationalities, as JSON data.</p>
                     <ul>
