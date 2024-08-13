@@ -1,11 +1,10 @@
-let collapsibles = document.querySelectorAll('.collapsible');
-let length = collapsibles.length;
+const collapsibles = document.querySelectorAll('.collapsible');
 
-for (let i = 0; i < length; i++) {
-    collapsibles[i].addEventListener('click', function() {
+collapsibles.forEach(collapsible => {
+    collapsible.addEventListener('click', function() {
         this.classList.toggle('active');
-        let content = this.nextElementSibling;
-        let symbol = this.lastChild;
+        const content = this.nextElementSibling;
+        const symbol = this.lastChild;
 
         if (content.style.display === 'block') {
             content.style.display = 'none';
@@ -15,16 +14,15 @@ for (let i = 0; i < length; i++) {
             symbol.textContent = '\u2212';
         }
     });
-}
+});
 
 const link = document.querySelector('.returnAllNationalitiesLink');
-link.addEventListener('click', handleLinkClick);
 
-function handleLinkClick() {
+link.addEventListener('click', function() {
     const collapsible = document.querySelector('#returnAllNationalities');
     collapsible.classList.add('active');
     const content = collapsible.nextElementSibling;
     content.style.display = 'block';
     const symbol = collapsible.lastChild;
     symbol.textContent = '\u2212';
-}
+});
