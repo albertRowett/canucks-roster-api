@@ -27,6 +27,10 @@ body {
     max-width: 1012px;
     min-height: calc(100vh - 2rem);
     padding: 2rem;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 section {
@@ -90,6 +94,13 @@ th, td {
 
 th {
     background-color: var(--code-bg-color);
+    text-align: center;
+}
+
+footer {
+    bottom: 0;
+    font-size: small;
+    margin-top: 1rem;
     text-align: center;
 }
 
