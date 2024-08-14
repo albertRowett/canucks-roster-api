@@ -41,41 +41,43 @@
                         </li>
                         <li>
                             <p class="bold">URL Params:</p>
-                            <table>
-                                <tr>
-                                    <th>Parameter Name</th>
-                                    <th>Type</th>
-                                    <th>Required?</th>
-                                    <th>Description</th>
-                                    <th>Values</th>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">removed</code></td>
-                                    <td class="center">boolean</td>
-                                    <td class="center">Optional</td>
-                                    <td>Enables retrieval of players removed from the roster</td>
-                                    <td>
-                                        <code class="code">0</code> (default): Returns only players on the roster<br>
-                                        <code class="code">1</code>: Returns only players removed from the roster
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">position</code></td>
-                                    <td class="center">string</td>
-                                    <td class="center">Optional</td>
-                                    <td>Filters players by position name</td>
-                                    <td>Must be one of <code class="code">Goaltender</code>, <code class="code">Defense</code>, <code class="code">Center</code>, <code class="code">Left wing</code> or <code class="code">Right wing</td>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">nationality</code></td>
-                                    <td class="center">string</td>
-                                    <td class="center">Optional</td>
-                                    <td>Filters players by nationality name</td>
-                                    <td>Must be a saved nationality - see <a href="#returnAllNationalities" class="returnAllNationalitiesLink">Return all nationalities</a> to access this list</td>
-                                </tr>
-                            </table>
+                            <div class="table-container">
+                                <table>
+                                    <tr>
+                                        <th>Parameter Name</th>
+                                        <th>Type</th>
+                                        <th>Required?</th>
+                                        <th>Description</th>
+                                        <th>Values</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">removed</code></td>
+                                        <td class="center">boolean</td>
+                                        <td class="center">Optional</td>
+                                        <td>Enables retrieval of players removed from the roster</td>
+                                        <td>
+                                            <code class="code">0</code> (default): Returns only players on the roster<br>
+                                            <code class="code">1</code>: Returns only players removed from the roster
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">position</code></td>
+                                        <td class="center">string</td>
+                                        <td class="center">Optional</td>
+                                        <td>Filters players by position name</td>
+                                        <td>Must be one of <code class="code">Goaltender</code>, <code class="code">Defense</code>, <code class="code">Center</code>, <code class="code">Left wing</code> or <code class="code">Right wing</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">nationality</code></td>
+                                        <td class="center">string</td>
+                                        <td class="center">Optional</td>
+                                        <td>Filters players by nationality name</td>
+                                        <td>Must be a saved nationality - see <a href="#returnAllNationalities" class="returnAllNationalitiesLink">Return all nationalities</a> to access this list</td>
+                                    </tr>
+                                </table>
+                            </div>
                             <p class="bold">Example:</p>
-                            <p><code class="code">/api/players?removed=1&position=Center&nationality=USA</code></p>
+                            <p><code class="code long-URL">/api/players?removed=1&position=Center&nationality=USA</code></p>
                         </li>
                         <li>
                             <p class="bold">Body Data Params:</p>
@@ -182,22 +184,24 @@
                         </li>
                         <li>
                             <p class="bold">URL Params:</p>
-                            <table>
-                                <tr>
-                                    <th>Parameter Name</th>
-                                    <th>Type</th>
-                                    <th>Required?</th>
-                                    <th>Description</th>
-                                    <th>Values</th>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">jerseyNumber</code></td>
-                                    <td class="center">integer</td>
-                                    <td class="center">Required</td>
-                                    <td>The jersey number of the player to return</td>
-                                    <td>1 to 99 (inclusive)</td>
-                                </tr>
-                            </table>
+                            <div class="table-container">
+                                <table class="test">
+                                    <tr>
+                                        <th>Parameter Name</th>
+                                        <th>Type</th>
+                                        <th>Required?</th>
+                                        <th>Description</th>
+                                        <th>Values</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">jerseyNumber</code></td>
+                                        <td class="center">integer</td>
+                                        <td class="center">Required</td>
+                                        <td>The jersey number of the player to return</td>
+                                        <td>1 to 99 (inclusive)</td>
+                                    </tr>
+                                </table>
+                            </div>
                             <p class="bold">Example:</p>
                             <p><code class="code">/api/players/9</code></p>
                         </li>
@@ -304,72 +308,74 @@
                         <li>
                             <p class="bold">Body Data Params:</p>
                             <p class="italic">All parameters must be sent as JSON with the correct headers.</p>
-                            <table>
-                                <tr>
-                                    <th>Parameter Name</th>
-                                    <th>Data Type</th>
-                                    <th>Required?</th>
-                                    <th>Description</th>
-                                    <th>Constraints</th>
-                                    <th>Example Value</th>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">name</code></td>
-                                    <td class="center">string</td>
-                                    <td class="center">Required</td>
-                                    <td>The player's name</td>
-                                    <td>Max length: 255</td>
-                                    <td><code class="code">'J. T. Miller'</code></td>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">jerseyNumber</code></td>
-                                    <td class="center">integer</td>
-                                    <td class="center">Required</td>
-                                    <td>The player's jersey number</td>
-                                    <td>Between 1 and 99 (inclusive); must not already be assigned</td>
-                                    <td><code class="code">9</code></td>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">dateOfBirth</code></td>
-                                    <td class="center">string</td>
-                                    <td class="center">Required</td>
-                                    <td>The player's date of birth</td>
-                                    <td>Date format: yyyy-mm-dd</td>
-                                    <td><code class="code">'1993-03-14'</code></td>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">position</code></td>
-                                    <td class="center">string</td>
-                                    <td class="center">Required</td>
-                                    <td>The player's primary position</td>
-                                    <td>Must be one of <code class="code">'Goaltender'</code>, <code class="code">'Defense'</code>, <code class="code">'Center'</code>, <code class="code">'Left wing'</code> or <code class="code">'Right wing'</code></td>
-                                    <td><code class="code">'Center'</code></td>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">nationality</code></td>
-                                    <td class="center">string</td>
-                                    <td class="center">Required</td>
-                                    <td>The name of the nation the player represents</td>
-                                    <td>Max length: 255</td>
-                                    <td><code class="code">'USA'</code></td>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">draftTeam</code></td>
-                                    <td class="center">string</td>
-                                    <td class="center">Optional</td>
-                                    <td>The name of the player's draft team (omit or set as <code class="code">null</code> if the player is undrafted)</td>
-                                    <td>Max length: 255</td>
-                                    <td><code class="code">'New York Rangers'</code></td>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">previousTeams</code></td>
-                                    <td class="center">array</td>
-                                    <td class="center">Optional</td>
-                                    <td>The names of the teams the player has previously played for (omit or set as <code class="code">null</code> if the player has none)</td>
-                                    <td>Team names must be of type <code class="code">string</code> with max length: 255 and no repeats</td>
-                                    <td><code class="code">['New York Rangers', 'Tampa Bay Lightning']</code></td>
-                                </tr>
-                            </table>
+                            <div class="table-container">
+                                <table>
+                                    <tr>
+                                        <th>Parameter Name</th>
+                                        <th>Data Type</th>
+                                        <th>Required?</th>
+                                        <th>Description</th>
+                                        <th>Constraints</th>
+                                        <th>Example Value</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">name</code></td>
+                                        <td class="center">string</td>
+                                        <td class="center">Required</td>
+                                        <td>The player's name</td>
+                                        <td>Max length: 255</td>
+                                        <td><code class="code">'J. T. Miller'</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">jerseyNumber</code></td>
+                                        <td class="center">integer</td>
+                                        <td class="center">Required</td>
+                                        <td>The player's jersey number</td>
+                                        <td>Between 1 and 99 (inclusive); must not already be assigned</td>
+                                        <td><code class="code">9</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">dateOfBirth</code></td>
+                                        <td class="center">string</td>
+                                        <td class="center">Required</td>
+                                        <td>The player's date of birth</td>
+                                        <td>Date format: yyyy-mm-dd</td>
+                                        <td><code class="code">'1993-03-14'</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">position</code></td>
+                                        <td class="center">string</td>
+                                        <td class="center">Required</td>
+                                        <td>The player's primary position</td>
+                                        <td>Must be one of <code class="code">'Goaltender'</code>, <code class="code">'Defense'</code>, <code class="code">'Center'</code>, <code class="code">'Left wing'</code> or <code class="code">'Right wing'</code></td>
+                                        <td><code class="code">'Center'</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">nationality</code></td>
+                                        <td class="center">string</td>
+                                        <td class="center">Required</td>
+                                        <td>The name of the nation the player represents</td>
+                                        <td>Max length: 255</td>
+                                        <td><code class="code">'USA'</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">draftTeam</code></td>
+                                        <td class="center">string</td>
+                                        <td class="center">Optional</td>
+                                        <td>The name of the player's draft team (omit or set as <code class="code">null</code> if the player is undrafted)</td>
+                                        <td>Max length: 255</td>
+                                        <td><code class="code">'New York Rangers'</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">previousTeams</code></td>
+                                        <td class="center">array</td>
+                                        <td class="center">Optional</td>
+                                        <td>The names of the teams the player has previously played for (omit or set as <code class="code">null</code> if the player has none)</td>
+                                        <td>Team names must be of type <code class="code">string</code> with max length: 255 and no repeats</td>
+                                        <td><code class="code">['New York Rangers', 'Tampa Bay Lightning']</code></td>
+                                    </tr>
+                                </table>
+                            </div>
                         </li>
                         <li>
                             <p class="bold">Success Response:</p>
@@ -457,94 +463,98 @@
                         </li>
                         <li>
                             <p class="bold">URL Params:</p>
-                            <table>
-                                <tr>
-                                    <th>Parameter Name</th>
-                                    <th>Type</th>
-                                    <th>Required?</th>
-                                    <th>Description</th>
-                                    <th>Values</th>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">jerseyNumber</code></td>
-                                    <td class="center">integer</td>
-                                    <td class="center">Required</td>
-                                    <td>The jersey number of the player to update</td>
-                                    <td>1 to 99 (inclusive)</td>
-                                </tr>
-                            </table>
+                            <div class="table-container">
+                                <table>
+                                    <tr>
+                                        <th>Parameter Name</th>
+                                        <th>Type</th>
+                                        <th>Required?</th>
+                                        <th>Description</th>
+                                        <th>Values</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">jerseyNumber</code></td>
+                                        <td class="center">integer</td>
+                                        <td class="center">Required</td>
+                                        <td>The jersey number of the player to update</td>
+                                        <td>1 to 99 (inclusive)</td>
+                                    </tr>
+                                </table>
+                            </div>
                             <p class="bold">Example:</p>
                             <p><code class="code">/api/players/9</code></p>
                         </li>
                         <li>
                             <p class="bold">Body Data Params:</p>
                             <p class="italic">All parameters must be sent as JSON with the correct headers.</p>
-                            <table>
-                                <tr>
-                                    <th>Parameter Name</th>
-                                    <th>Data Type</th>
-                                    <th>Required?</th>
-                                    <th>Description</th>
-                                    <th>Constraints</th>
-                                    <th>Example Value</th>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">name</code></td>
-                                    <td class="center">string</td>
-                                    <td class="center">Optional</td>
-                                    <td>The player's updated name</td>
-                                    <td>Max length: 255</td>
-                                    <td><code class="code">'J. T. Miller'</code></td>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">jerseyNumber</code></td>
-                                    <td class="center">integer</td>
-                                    <td class="center">Optional</td>
-                                    <td>The player's updated jersey number</td>
-                                    <td>Between 1 and 99 (inclusive); must not already be assigned</td>
-                                    <td><code class="code">9</code></td>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">dateOfBirth</code></td>
-                                    <td class="center">string</td>
-                                    <td class="center">Optional</td>
-                                    <td>The player's updated date of birth</td>
-                                    <td>Date format: yyyy-mm-dd</td>
-                                    <td><code class="code">'1993-03-14'</code></td>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">position</code></td>
-                                    <td class="center">string</td>
-                                    <td class="center">Optional</td>
-                                    <td>The player's updated primary position</td>
-                                    <td>Must be one of <code class="code">'Goaltender'</code>, <code class="code">'Defense'</code>, <code class="code">'Center'</code>, <code class="code">'Left wing'</code> or <code class="code">'Right wing'</code></td>
-                                    <td><code class="code">'Center'</code></td>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">nationality</code></td>
-                                    <td class="center">string</td>
-                                    <td class="center">Optional</td>
-                                    <td>The updated name of the nation the player represents</td>
-                                    <td>Max length: 255</td>
-                                    <td><code class="code">'USA'</code></td>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">draftTeam</code></td>
-                                    <td class="center">string</td>
-                                    <td class="center">Optional</td>
-                                    <td>The updated name of the player's draft team (set as <code class="code">null</code> to update to undrafted)</td>
-                                    <td>Max length: 255</td>
-                                    <td><code class="code">'New York Rangers'</code></td>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">previousTeams</code></td>
-                                    <td class="center">array</td>
-                                    <td class="center">Optional</td>
-                                    <td>The updated names of the teams the player has previously played for (set as <code class="code">null</code> to update to none)</td>
-                                    <td>Team names must be of type <code class="code">string</code> with max length: 255 and no repeats</td>
-                                    <td><code class="code">['New York Rangers', 'Tampa Bay Lightning']</code></td>
-                                </tr>
-                            </table>
+                            <div class="table-container">
+                                <table>
+                                    <tr>
+                                        <th>Parameter Name</th>
+                                        <th>Data Type</th>
+                                        <th>Required?</th>
+                                        <th>Description</th>
+                                        <th>Constraints</th>
+                                        <th>Example Value</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">name</code></td>
+                                        <td class="center">string</td>
+                                        <td class="center">Optional</td>
+                                        <td>The player's updated name</td>
+                                        <td>Max length: 255</td>
+                                        <td><code class="code">'J. T. Miller'</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">jerseyNumber</code></td>
+                                        <td class="center">integer</td>
+                                        <td class="center">Optional</td>
+                                        <td>The player's updated jersey number</td>
+                                        <td>Between 1 and 99 (inclusive); must not already be assigned</td>
+                                        <td><code class="code">9</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">dateOfBirth</code></td>
+                                        <td class="center">string</td>
+                                        <td class="center">Optional</td>
+                                        <td>The player's updated date of birth</td>
+                                        <td>Date format: yyyy-mm-dd</td>
+                                        <td><code class="code">'1993-03-14'</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">position</code></td>
+                                        <td class="center">string</td>
+                                        <td class="center">Optional</td>
+                                        <td>The player's updated primary position</td>
+                                        <td>Must be one of <code class="code">'Goaltender'</code>, <code class="code">'Defense'</code>, <code class="code">'Center'</code>, <code class="code">'Left wing'</code> or <code class="code">'Right wing'</code></td>
+                                        <td><code class="code">'Center'</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">nationality</code></td>
+                                        <td class="center">string</td>
+                                        <td class="center">Optional</td>
+                                        <td>The updated name of the nation the player represents</td>
+                                        <td>Max length: 255</td>
+                                        <td><code class="code">'USA'</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">draftTeam</code></td>
+                                        <td class="center">string</td>
+                                        <td class="center">Optional</td>
+                                        <td>The updated name of the player's draft team (set as <code class="code">null</code> to update to undrafted)</td>
+                                        <td>Max length: 255</td>
+                                        <td><code class="code">'New York Rangers'</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">previousTeams</code></td>
+                                        <td class="center">array</td>
+                                        <td class="center">Optional</td>
+                                        <td>The updated names of the teams the player has previously played for (set as <code class="code">null</code> to update to none)</td>
+                                        <td>Team names must be of type <code class="code">string</code> with max length: 255 and no repeats</td>
+                                        <td><code class="code">['New York Rangers', 'Tampa Bay Lightning']</code></td>
+                                    </tr>
+                                </table>
+                            </div>
                         </li>
                         <li>
                             <p class="bold">Success Response:</p>
@@ -630,46 +640,50 @@
                         </li>
                         <li>
                             <p class="bold">URL Params:</p>
-                            <table>
-                                <tr>
-                                    <th>Parameter Name</th>
-                                    <th>Type</th>
-                                    <th>Required?</th>
-                                    <th>Description</th>
-                                    <th>Values</th>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">jerseyNumber</code></td>
-                                    <td class="center">integer</td>
-                                    <td class="center">Required</td>
-                                    <td>The jersey number of the player to remove/restore</td>
-                                    <td>1 to 99 (inclusive)</td>
-                                </tr>
-                            </table>
+                            <div class="table-container">
+                                <table>
+                                    <tr>
+                                        <th>Parameter Name</th>
+                                        <th>Type</th>
+                                        <th>Required?</th>
+                                        <th>Description</th>
+                                        <th>Values</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">jerseyNumber</code></td>
+                                        <td class="center">integer</td>
+                                        <td class="center">Required</td>
+                                        <td>The jersey number of the player to remove/restore</td>
+                                        <td>1 to 99 (inclusive)</td>
+                                    </tr>
+                                </table>
+                            </div>
                             <p class="bold">Example:</p>
                             <p><code class="code">/api/players/9</code></p>
                         </li>
                         <li>
                             <p class="bold">Body Data Params:</p>
                             <p class="italic">All parameters must be sent as JSON with the correct headers.</p>
-                            <table>
-                                <tr>
-                                    <th>Parameter Name</th>
-                                    <th>Data Type</th>
-                                    <th>Required?</th>
-                                    <th>Description</th>
-                                    <th>Constraints</th>
-                                    <th>Example Value</th>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">action</code></td>
-                                    <td class="center">string</td>
-                                    <td class="center">Required</td>
-                                    <td>The action to effect on the player's roster status</td>
-                                    <td>Must be either <code class="code">'remove'</code> or <code class="code">'restore'</code></td>
-                                    <td><code class="code">'remove'</code></td>
-                                </tr>
-                            </table>
+                            <div class="table-container">
+                                <table>
+                                    <tr>
+                                        <th>Parameter Name</th>
+                                        <th>Data Type</th>
+                                        <th>Required?</th>
+                                        <th>Description</th>
+                                        <th>Constraints</th>
+                                        <th>Example Value</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">action</code></td>
+                                        <td class="center">string</td>
+                                        <td class="center">Required</td>
+                                        <td>The action to effect on the player's roster status</td>
+                                        <td>Must be either <code class="code">'remove'</code> or <code class="code">'restore'</code></td>
+                                        <td><code class="code">'remove'</code></td>
+                                    </tr>
+                                </table>
+                            </div>
                         </li>
                         <li>
                             <p class="bold">Success Response:</p>
@@ -757,22 +771,24 @@
                         </li>
                         <li>
                             <p class="bold">URL Params:</p>
-                            <table>
-                                <tr>
-                                    <th>Parameter Name</th>
-                                    <th>Type</th>
-                                    <th>Required?</th>
-                                    <th>Description</th>
-                                    <th>Values</th>
-                                </tr>
-                                <tr>
-                                    <td class="center"><code class="code">jerseyNumber</code></td>
-                                    <td class="center">integer</td>
-                                    <td class="center">Required</td>
-                                    <td>The jersey number of the player to delete</td>
-                                    <td>1 to 99 (inclusive)</td>
-                                </tr>
-                            </table>
+                            <div class="table-container">
+                                <table>
+                                    <tr>
+                                        <th>Parameter Name</th>
+                                        <th>Type</th>
+                                        <th>Required?</th>
+                                        <th>Description</th>
+                                        <th>Values</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="center"><code class="code">jerseyNumber</code></td>
+                                        <td class="center">integer</td>
+                                        <td class="center">Required</td>
+                                        <td>The jersey number of the player to delete</td>
+                                        <td>1 to 99 (inclusive)</td>
+                                    </tr>
+                                </table>
+                            </div>
                             <p class="bold">Example:</p>
                             <p><code class="code">/api/players/9</code></p>
                         </li>

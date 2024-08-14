@@ -82,6 +82,10 @@ p {
     margin: 1rem 0;
 }
 
+ul {
+    padding-left: 1rem;
+}
+
 table, th, td {
     border: 1px solid var(--border-color);
     border-collapse: collapse;
@@ -116,6 +120,14 @@ footer {
     text-align: center;
 }
 
+.table-container {
+    overflow-x: auto;
+}
+
+.long-URL {
+    overflow-wrap: break-word;
+}
+
 .code {
     background-color: var(--code-bg-color);
     padding: 0.17rem 0.34rem;
@@ -125,6 +137,7 @@ footer {
 
 .codeblock {
     padding: 1rem;
+    overflow-x: auto;
 }
 
 .json-key, .json-int, .json-null, .js-object, .js-arrow {
@@ -145,4 +158,10 @@ footer {
 
 #returnAllNationalities {
     outline: 0;
+}
+
+@media screen and (max-width: 640px) {
+    .container {
+        padding: 1rem;
+    }
 }
