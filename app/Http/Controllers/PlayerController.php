@@ -37,8 +37,9 @@ class PlayerController extends Controller
             $request->validate([
                 'removed' => 'nullable|boolean',
                 'position' => 'nullable|string|in:Goaltender,Defense,Center,Left wing,Right wing',
-                'nationality' => 'nullable|string|exists:nationalities,name',
+                'nationality' => 'nullable|string|exists:nationalities,name',  // Requested nationality must exist in DB
             ]);
+
             $removed = $request->removed;
             $position = $request->position;
             $nationality = $request->nationality;
@@ -93,7 +94,7 @@ class PlayerController extends Controller
         try {
             $request->validate([
                 'name' => 'required|string|max:255',
-                'jerseyNumber' => 'required|numeric|integer|between:1,99|unique:players,jersey_number',
+                'jerseyNumber' => 'required|numeric|integer|between:1,99|unique:players,jersey_number',  // Jersey number must not already be in use
                 'dateOfBirth' => 'required|date_format:Y-m-d',
                 'position' => 'required|string|in:Goaltender,Defense,Center,Left wing,Right wing',
                 'nationality' => 'required|string|max:255',
@@ -108,18 +109,8 @@ class PlayerController extends Controller
                 $dateOfBirth = $request->dateOfBirth;
                 $positionId = $this->positionService->getPositionIdByPositionName($request->position);
                 $nationalityId = $this->nationalityService->getNationalityIdByNationalityName($request->nationality);
-
-                if (is_null($request->draftTeam)) {
-                    $draftTeamId = null;
-                } else {
-                    $draftTeamId = $this->draftTeamService->getDraftTeamIdByDraftTeamName($request->draftTeam);
-                }
-
-                if (is_null($request->previousTeams)) {
-                    $previousTeamIds = null;
-                } else {
-                    $previousTeamIds = $this->previousTeamService->getPreviousTeamIdsByPreviousTeamNames($request->previousTeams);
-                }
+                $draftTeamId = is_null($request->draftTeam) ? null : $this->draftTeamService->getDraftTeamIdByDraftTeamName($request->draftTeam);
+                $previousTeamIds = is_null($request->previousTeams) ? null : $this->previousTeamService->getPreviousTeamIdsByPreviousTeamNames($request->previousTeams);
 
                 $player = Player::create([
                     'name' => $name,
@@ -146,7 +137,7 @@ class PlayerController extends Controller
     public function updatePlayer(int $jerseyNumber, Request $request): JsonResponse
     {
         try {
-            $player = Player::with(['position', 'nationality', 'draftTeam.team', 'previousTeams.team'])->where('jersey_number', $jerseyNumber)->withTrashed()->first();
+            $player = Player::where('jersey_number', $jerseyNumber)->withTrashed()->first();
 
             if (is_null($player)) {
                 return $this->returnPlayerNotFoundResponse($jerseyNumber);
@@ -160,7 +151,7 @@ class PlayerController extends Controller
 
             $request->validate([
                 'name' => 'string|max:255',
-                'jerseyNumber' => ['numeric', 'integer', 'between:1,99', Rule::unique('players', 'jersey_number')->ignore($jerseyNumber, 'jersey_number')],
+                'jerseyNumber' => ['numeric', 'integer', 'between:1,99', Rule::unique('players', 'jersey_number')->ignore($jerseyNumber, 'jersey_number')],  // Ignore if update specifies player's current jersey number
                 'dateOfBirth' => 'date_format:Y-m-d',
                 'position' => 'string|in:Goaltender,Defense,Center,Left wing,Right wing',
                 'nationality' => 'string|max:255',
@@ -222,9 +213,9 @@ class PlayerController extends Controller
                 return $this->returnPlayerNotFoundResponse($jerseyNumber);
             }
 
-            $request->validate(['action' => 'required|in:remove,restore']);
-            $action = $request->action;
+            $request->validate(['action' => 'required|string|in:remove,restore']);
 
+            $action = $request->action;
             $statusCode = 200;
 
             if ($action === 'remove') {
