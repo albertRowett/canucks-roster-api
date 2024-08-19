@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Vancouver Canucks Roster API: Documentation</title>
 
-    <meta name="description" content="" />
+    <meta name="description" content="Unofficial roster of the Vancouver Canucks hockey team" />
     <meta name="author" content="Albert Rowett" />
 
     <link rel="stylesheet" href="css/documentation.css" />
