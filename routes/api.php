@@ -20,4 +20,5 @@ Route::controller(PlayerController::class)->group(function () {
 });
 
 Route::get('/positions', [PositionController::class, 'getPositions']);
+
 Route::get('/nationalities', [NationalityController::class, 'getNationalities']);

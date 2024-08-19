@@ -8,9 +8,7 @@ class NationalityService
 {
     public function getNationalityIdByNationalityName(string $name): int
     {
-        $nationality = Nationality::firstOrCreate([
-            'name' => $name,
-        ]);
+        $nationality = Nationality::firstOrCreate(['name' => $name]);
 
         return $nationality->id;
     }

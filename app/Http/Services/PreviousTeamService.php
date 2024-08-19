@@ -20,9 +20,7 @@ class PreviousTeamService
         }, $names);
 
         $previousTeamIds = array_map(function (int $teamId): int {
-            $previousTeam = PreviousTeam::firstOrCreate([
-                'team_id' => $teamId,
-            ]);
+            $previousTeam = PreviousTeam::firstOrCreate(['team_id' => $teamId]);
 
             return $previousTeam->id;
         }, $teamIds);

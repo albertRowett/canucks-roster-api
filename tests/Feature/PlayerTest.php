@@ -17,7 +17,7 @@ class PlayerTest extends TestCase
 
     public function test_get_players_success(): void
     {
-        Player::factory()->count(2)->has(PreviousTeam::factory()->count(1))->create();
+        Player::factory()->count(2)->has(PreviousTeam::factory())->create();
 
         $response = $this->getJson('/api/players');
         $response->assertStatus(200)
@@ -53,7 +53,7 @@ class PlayerTest extends TestCase
 
     public function test_get_removed_players_invalid(): void
     {
-        $response = $this->getJson('/api/players?removed=non-boolean'); // validation requires boolean
+        $response = $this->getJson('/api/players?removed=non-boolean');  // Validation requires boolean
         $response->assertStatus(422)
             ->assertInvalid('removed');
     }
@@ -74,7 +74,7 @@ class PlayerTest extends TestCase
 
     public function test_get_filtered_players_invalid_position(): void
     {
-        $response = $this->getJson('/api/players?position=Forward');    // validation requires one of 'Goaltender'/'Defense'/'Center'/'Left wing'/'Right wing'
+        $response = $this->getJson('/api/players?position=Forward');  // Validation requires one of 'Goaltender'/'Defense'/'Center'/'Left wing'/'Right wing'
         $response->assertStatus(422)
             ->assertInvalid('position');
     }
@@ -95,7 +95,7 @@ class PlayerTest extends TestCase
 
     public function test_get_filtered_players_invalid_nationality(): void
     {
-        $response = $this->getJson('/api/players?nationality=USA');     // validation requires name from nationalities table in database
+        $response = $this->getJson('/api/players?nationality=USA');  // Validation requires name from nationalities table in database
         $response->assertStatus(422)
             ->assertInvalid('nationality');
     }
@@ -177,13 +177,13 @@ class PlayerTest extends TestCase
     public function test_add_player_invalid_data(): void
     {
         $response = $this->postJson('/api/players', [
-            'name' => ['J. T. Miller'],             // validation requires string
-            'jerseyNumber' => 9.1,                  // validation requires integer
-            'dateOfBirth' => '14-03-1993',          // validation requires Y-m-d format
-            'position' => 'Forward',                // validation requires one of 'Goaltender'/'Defense'/'Center'/'Left wing'/'Right wing'
-            'nationality' => ['USA'],               // validation requires string
-            'draftTeam' => 1,                       // validation requires string
-            'previousTeams' => 'New York Rangers',  // validation requires array
+            'name' => ['J. T. Miller'],             // Validation requires string
+            'jerseyNumber' => 9.1,                  // Validation requires integer
+            'dateOfBirth' => '14-03-1993',          // Validation requires Y-m-d format
+            'position' => 'Forward',                // Validation requires one of 'Goaltender'/'Defense'/'Center'/'Left wing'/'Right wing'
+            'nationality' => ['USA'],               // Validation requires string
+            'draftTeam' => 1,                       // Validation requires string
+            'previousTeams' => 'New York Rangers',  // Validation requires array
         ]);
         $response->assertStatus(422)
             ->assertInvalid(['name', 'jerseyNumber', 'dateOfBirth', 'position', 'nationality', 'draftTeam', 'previousTeams']);
@@ -251,13 +251,13 @@ class PlayerTest extends TestCase
         $player = Player::factory()->create();
 
         $response = $this->putJson("/api/players/$player->jersey_number", [
-            'name' => ['J. T. Miller'],             // validation requires string
-            'jerseyNumber' => 9.1,                  // validation requires integer
-            'dateOfBirth' => '14-03-1993',          // validation requires Y-m-d format
-            'position' => 'Forward',                // validation requires one of 'Goaltender'/'Defense'/'Center'/'Left wing'/'Right wing'
-            'nationality' => ['USA'],               // validation requires string
-            'draftTeam' => 1,                       // validation requires string
-            'previousTeams' => 'New York Rangers',  // validation requires array
+            'name' => ['J. T. Miller'],             // Validation requires string
+            'jerseyNumber' => 9.1,                  // Validation requires integer
+            'dateOfBirth' => '14-03-1993',          // Validation requires Y-m-d format
+            'position' => 'Forward',                // Validation requires one of 'Goaltender'/'Defense'/'Center'/'Left wing'/'Right wing'
+            'nationality' => ['USA'],               // Validation requires string
+            'draftTeam' => 1,                       // Validation requires string
+            'previousTeams' => 'New York Rangers',  // Validation requires array
         ]);
         $response->assertStatus(422)
             ->assertInvalid(['name', 'jerseyNumber', 'dateOfBirth', 'position', 'nationality', 'draftTeam', 'previousTeams']);

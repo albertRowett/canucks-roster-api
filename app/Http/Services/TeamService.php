@@ -8,9 +8,7 @@ class TeamService
 {
     public function getTeamIdByTeamName(string $name): int
     {
-        $team = Team::firstOrCreate([
-            'name' => $name,
-        ]);
+        $team = Team::firstOrCreate(['name' => $name]);
 
         return $team->id;
     }

@@ -16,10 +16,7 @@ class DraftTeamService
     public function getDraftTeamIdByDraftTeamName(string $name): int
     {
         $teamId = $this->teamService->getTeamIdByTeamName($name);
-
-        $draftTeam = DraftTeam::firstOrCreate([
-            'team_id' => $teamId,
-        ]);
+        $draftTeam = DraftTeam::firstOrCreate(['team_id' => $teamId]);
 
         return $draftTeam->id;
     }
