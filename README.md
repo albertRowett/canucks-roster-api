@@ -1,66 +1,96 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Vancouver Canucks Roster API - RESTful API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Laravel-built API tracking the roster of the Vancouver Canucks ice hockey team.
 
-## About Laravel
+[API Documentation](https://canucks-roster-api.2023-bertr.dev.io-academy.uk/)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Introduction
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The aim of this project was to consolidate my understanding of REST APIs, Laravel and testing by building an API to track the roster of the Vancouver Canucks, the ice hockey team I follow. I chose this project because I thought the changes affecting a team roster would map well onto the CRUD operations. Additionally, I wanted to gain experience writing API documentation, as I had not done this before.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+I used PHP and the Laravel framework to streamline the creation and organisation of classes and the database, as well as to handle database interactions. I utilised MySQL for database management and Docker to create a consistent development environment. Testing was implemented using PHPUnit, built into Laravel, providing a reliable means to achieve well-tested code. Finally, I created a Blade template to host the API’s documentation, which I styled with CSS and JavaScript.
 
-## Learning Laravel
+One of the most challenging parts of this project was defining the model relationships and designing a database structure to support them. Setting up the associations between the player, draft team, previous team and team models to accurately reflect their real-world relationships was particularly complex, but this forced me to gain a deeper understanding of Laravel’s Eloquent ORM and relational database design. Additionally, I learned several useful, new techniques, including using try and catch blocks for exception handling, implementing transactions to avoid permanent database changes in the event of errors and utilising Laravel’s built-in soft deletion functionality.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Features
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+-   **CRUD operations.** Add, view, edit and delete players from the roster, with separate routes to view positions and nationalities.
+-   **Filtering.** Filter players by roster status, position and/or nationality for more targeted queries.
+-   **Soft deletion.** Temporarily remove players from the roster (e.g. due to injury), with the option to reinstate them later.
+-   **Custom responses.** Standardised success and error messages improve the clarity of API interactions.
+-   **Database transactions.** Ensure data integrity by rolling back changes if errors occur during multi-step operations, preventing partial updates.
+-   **Thorough testing.** Comprehensive tests cover all API endpoints and service layer methods, ensuring the reliability of core functionalities.
+-   **API Documentation.** Clear, detailed documentation outlines the available endpoints, request formats and expected responses.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Installation
 
-## Laravel Sponsors
+1. Clone the repository:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`git clone https://github.com/albertRowett/canucks-roster-api.git`
 
-### Premium Partners
+2. Navigate to the project directory:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`cd canucks-roster-api`
+
+3. Install dependencies:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`composer install`
+
+4. Configure the database connection:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Copy the example environment file: `cp .env.example .env`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Open the new **.env** file and update the database connection details.
+
+5. Set up Docker (if applicable):
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If using Docker for your development environment, start the containers: `docker-compose up --detach`
+
+6. Generate an application key:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`php artisan key:generate`
+
+7. Run the database migrations:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`php artisan migrate`
+
+8. Serve the application:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`php artisan serve`
+
+9. Access the API:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Access the API at http://localhost:8000/api (if using Docker, check your setup for an alternative port if **8000** is already in use).
+
+## Testing
+
+This project includes both HTTP tests to validate the API endpoints and integration tests covering the internal service layer's methods, ensuring their correct functionality with the models and database.
+
+Run all tests with the command: `php artisan test`
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+While no major updates are planned for this project, I welcome bug reports and suggestions for improvements. Drop me an email at <albertRowett@gmail.com>
 
-## Code of Conduct
+## Acknowledgements
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Technologies used to build the API:
 
-## Security Vulnerabilities
+-   [Laravel](https://laravel.com/)
+-   [Docker](https://www.docker.com/)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Advice on database structure and deployment:
 
-## License
+-   My former trainer [@ashleycoles](https://github.com/ashleycoles)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Inspiration for API documentation structure:
+
+-   [@iros](https://github.com/iros)'s [REST API documentation template](https://gist.github.com/iros/3426278)
+
+Favicon image source:
+
+-   [freesvg.org](https://freesvg.org/)
+
+<br>
+
+_All last accessed 9 October 2024_
