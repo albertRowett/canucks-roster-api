@@ -246,7 +246,7 @@ class PlayerController extends Controller
 
     public function deletePlayer(int $jerseyNumber): JsonResponse
     {
-        $query = Player::where('jersey_number', $jerseyNumber);
+        $query = Player::where('jersey_number', $jerseyNumber)->withTrashed();
 
         try {
             if ($query->exists()) {
