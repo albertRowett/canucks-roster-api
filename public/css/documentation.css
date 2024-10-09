@@ -49,6 +49,8 @@ h2 {
 
 h3,
 .symbol {
+    align-items: center;
+    display: flex;
     font-weight: 600;
     font-size: 1.25rem;
     margin: 1rem 0;
