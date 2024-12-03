@@ -9,6 +9,14 @@
 
     <meta name="description" content="Unofficial roster of the Vancouver Canucks hockey team" />
     <meta name="author" content="Albert Rowett" />
+    <meta property="og:title" content="Vancouver Canucks Roster API: Documentation" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://opengraph.b-cdn.net/production/images/0be94333-ecfb-42fa-97da-3093cec9555f.png?token=VxahIzAb5YAglBAprhoc3OHyjop5QAhMBcI0L9cBzZI&height=627&width=1200&expires=33269217901" />
+    <meta property="og:image:alt" content="Vancouver Canucks Roster API: Documentation" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="627" />
+    <meta property="og:description" content="Unofficial roster of the Vancouver Canucks hockey team" />
+    <meta property="og:url" content="https://canucks-roster-api.2023-bertr.dev.io-academy.uk/" />
 
     <link rel="stylesheet" href="css/documentation.css" />
 
