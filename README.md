@@ -2,7 +2,7 @@
 
 Laravel-built API tracking the roster of the Vancouver Canucks ice hockey team.
 
-[API Documentation](https://canucks-roster-api.2023-bertr.dev.io-academy.uk/)
+[API Documentation](https://canucks-roster-api.infinityfree.me/)
 
 ## Introduction
 
